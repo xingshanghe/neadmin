@@ -2,6 +2,13 @@
 
 > Nuxt + Element Admin System.
 
+基于vue.js的服务端渲染框架nuxt.js构建的后台管理系统，实现了以下功能:
+
+* 会员系统
+* 消息通知
+* 三级导航菜单
+* element-ui样式修改适配数据比较丰富的管理系统
+
 ## Build Setup
 
 > [Vue.js](https://cn.vuejs.org/index.html)
