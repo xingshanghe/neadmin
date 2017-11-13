@@ -24,15 +24,33 @@ module.exports = {
     /*
     ** Run ESLint on save
     */
-    extend (config, ctx) {
+    extend(config, ctx) {
       if (ctx.dev && ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
           exclude: /(node_modules)/
-        })
+        });
       }
+    },
+    publicPath: '/public/',
+    vendor: [
+      'axios',
+      'element-ui'
+    ],
+    extractCSS: true,
+    filenames: {
+      vendor: 'vendor.[hash:12].js',
+      app: 'hare.[chunkhash:12].js',
+      css: 'hare.[contenthash:12].css'
     }
-  }
-}
+  },
+  css: [
+    'normalize.css/normalize.css',
+    'element-ui/lib/theme-chalk/index.css'
+  ],
+  plugins: [
+    '~/plugins/element-ui'
+  ]
+};
