@@ -1,9 +1,9 @@
 <template>
   <div class="login container">
-    <el-row type="flex" justify="center">
+    <el-row  justify="center">
       <el-col :xs="{span: 14, offset: 5}" :sm="{span: 10, offset: 7}" :lg="{span: 6, offset: 9}">
         <el-card>
-          <el-form :model="user" ref="user" @keyup.enter.native="login">
+          <el-form :model="user" ref="user" @keyup.enter.native="!logging && login()">
             <el-form-item prop="username" :rules="[{ required: true, message: '用户名称必须!'}]">
               <el-col :span="24">
                 <el-input v-model="user.username" placeholder="用户名"></el-input>
@@ -50,7 +50,21 @@ export default {
   },
   layout: false,
   methods: {
-    login() {},
+    login() {
+      this.logging = true;
+      this.$refs.user.validate(async(valid) => {
+        try {
+          if (valid) {
+            await this.$store.dispatch('login', this.user);
+            this.$router.push(this.$route.query.redirect || '/');
+          }
+        } catch (e) {
+          this.$message.error(e.message);
+        } finally {
+          this.logging = false;
+        }
+      });
+    },
     refreshCaptcha() {}
   }
 };

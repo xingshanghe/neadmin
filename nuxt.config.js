@@ -42,9 +42,12 @@ module.exports = {
     extractCSS: true,
     filenames: {
       vendor: 'vendor.[hash:12].js',
-      app: 'hare.[chunkhash:12].js',
-      css: 'hare.[contenthash:12].css'
+      app: 'ne.[chunkhash:12].js',
+      css: 'ne.[contenthash:12].css'
     }
+  },
+  router: {
+    middleware: ['check-auth']
   },
   css: [
     'normalize.css/normalize.css',
