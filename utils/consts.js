@@ -2,7 +2,7 @@
 
 export default Object.freeze({
   APP: 'neadmin',
-  URL: 'http://localhost:8000',
+  URL: 'http://neadmin.com/api',
   API_URL: '/api',
   JWT_KEY: 'jwt',
   USER_KEY: 'user'

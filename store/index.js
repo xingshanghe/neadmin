@@ -25,7 +25,7 @@ export const actions = {
   nuxtServerInit() {},
   async login({commit}, {username, password, captcha}) {
     try {
-      const {code: code, data: {token: token, user: user}, msg: msg} = await axios.post(consts.API_URL + '/login', {username, password, captcha});
+      const {data: {code: code, data: {token: token, user: user}, msg: msg}} = await axios.post(consts.API_URL + '/accounts/login', {username, password, captcha});
       if (code === 0) {
         setToken(token);
         jwtHeader(token);
@@ -34,10 +34,11 @@ export const actions = {
         throw new Error(msg);
       }
     } catch (error) {
+      console.error(error);
       let message = error.message;
-      if (error.response.data) {
-        message = error.response.data.message || message;
-      }
+      // if (error.response.data) {
+      //   message = error.response.data.message || message;
+      // }
       throw new Error(message);
     }
   }
