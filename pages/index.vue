@@ -21,6 +21,7 @@ import Logo from '~/components/Logo.vue';
 
 export default {
   middleware: 'authenticated',
+  layout: 'nuxt',
   components: {
     Logo
   }

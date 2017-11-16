@@ -39,7 +39,7 @@ export default {
       captchaSvg: ''
     };
   },
-  layout: false,
+  layout: 'empty',
   methods: {
     login() {
       this.logging = true;
@@ -64,7 +64,7 @@ export default {
 
 <style scoped lang="scss">
 .login {
-  background: url(~/assets/images/login-bg.jpeg) no-repeat center center fixed;
+  background: url(~/assets/images/login-bg.jpg) no-repeat center center fixed;
   background-size: cover;
   position: absolute;
   top: 0;
