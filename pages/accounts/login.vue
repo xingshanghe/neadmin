@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="login container">
     <el-row class="login-row" type="flex" justify="center">
       <el-col :xs="{span: 14, offset: 5}" :sm="{span: 10, offset: 7}" :lg="{span: 6, offset: 9}">
@@ -24,6 +25,7 @@
       </el-col>
     </el-row>
   </div>
+</div>
 </template>
 
 <script>
