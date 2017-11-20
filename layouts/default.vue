@@ -6,7 +6,12 @@
           Neadmin
         </a>
       </div>
-      <nav class="header-nav">
+      <div class="menu-nav">
+        <el-menu  mode="horizontal" background-color="#37474f" text-color="#ffffff" active-text-color="#fff">
+          <el-menu-item index="1"><i class="el-icon-search"></i>产品与服务</el-menu-item>
+        </el-menu>
+      </div>
+      <div class="header-nav">
         <el-menu  mode="horizontal" background-color="#37474f" text-color="#ffffff" active-text-color="#fff">
           <el-menu-item index="1"><i class="el-icon-search"></i>搜索</el-menu-item>
           <el-menu-item index="2"><el-badge :value="3" class="item"><i class="el-icon-bell"></i></el-badge></el-badge></el-menu-item>
@@ -23,10 +28,79 @@
             <el-menu-item index="/signOut"><i class="icon-switch"></i> 安全退出</el-menu-item>
           </el-submenu>
         </el-menu>
-      </nav>
+      </div>
     </el-header>
     <el-container>
-      <el-aside >Aside</el-aside>
+      <el-aside width="200px">
+        <el-menu default-active="1-4-1" class="sidebar"  :collapse="isCollapse"  style="height: 100%">
+          <li class="toggle-sideber">
+            <a @click="toggleSidebar(isCollapse)" :class="!isCollapse?'sider-opened':'sider-closed'">
+              <i class="icon-paragraph-justify3"></i>
+            </a>
+          </li>
+          <el-submenu index="1">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span slot="title">导航一</span>
+            </template>
+            <el-menu-item-group>
+              <span slot="title">分组一</span>
+              <el-menu-item index="1-1">选项1</el-menu-item>
+              <el-menu-item index="1-2">选项2</el-menu-item>
+            </el-menu-item-group>
+            <el-menu-item-group title="分组2">
+              <el-menu-item index="1-3">选项3</el-menu-item>
+            </el-menu-item-group>
+            <el-submenu index="1-4">
+              <span slot="title">选项4</span>
+              <el-menu-item index="1-4-1">选项1</el-menu-item>
+            </el-submenu>
+          </el-submenu>
+          <el-menu-item index="2">
+            <i class="el-icon-menu"></i>
+            <span slot="title">导航二</span>
+          </el-menu-item>
+          <el-menu-item index="3">
+            <i class="el-icon-setting"></i>
+            <span slot="title">导航三</span>
+          </el-menu-item>
+        </el-menu>
+      </el-aside>
+      <el-aside width="200px">
+        <el-menu default-active="1-4-1" class="sidebar"  :collapse="isCollapse"  style="height: 100%">
+          <li class="toggle-sideber">
+            <a @click="toggleSidebar(isCollapse)" :class="!isCollapse?'sider-opened':'sider-closed'">
+              <i class="el-icon-back"></i>
+            </a>
+          </li>
+          <el-submenu index="1">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span slot="title">导航一</span>
+            </template>
+            <el-menu-item-group>
+              <span slot="title">分组一</span>
+              <el-menu-item index="1-1">选项1</el-menu-item>
+              <el-menu-item index="1-2">选项2</el-menu-item>
+            </el-menu-item-group>
+            <el-menu-item-group title="分组2">
+              <el-menu-item index="1-3">选项3</el-menu-item>
+            </el-menu-item-group>
+            <el-submenu index="1-4">
+              <span slot="title">选项4</span>
+              <el-menu-item index="1-4-1">选项1</el-menu-item>
+            </el-submenu>
+          </el-submenu>
+          <el-menu-item index="2">
+            <i class="el-icon-menu"></i>
+            <span slot="title">导航二</span>
+          </el-menu-item>
+          <el-menu-item index="3">
+            <i class="el-icon-setting"></i>
+            <span slot="title">导航三</span>
+          </el-menu-item>
+        </el-menu>
+      </el-aside>
       <el-main><nuxt></nuxt></el-main>
     </el-container>
   </el-container>
@@ -40,8 +114,14 @@ export default {
   name: 'default-layout',
   data() {
     return {
-      currentUser: this.$store.state.user
+      currentUser: this.$store.state.user,
+      isCollapse: false
     };
+  },
+  methods: {
+    toggleSidebar(isCollapse) {
+      this.isCollapse = !isCollapse;
+    }
   },
   mounted() {
   }
@@ -54,19 +134,23 @@ export default {
 $black:#37474f;
 $nav-height:50px;
 .el-header {
-  height: $nav-height !important;;
+  height: $nav-height !important;
   background-color: $black;
   color: #ffffff !important;
   line-height: $nav-height !important;
-  .logo{
+  .logo,.menu-nav{
     display: inline-block;
     float: left;
   }
+  .menu-nav{
+    padding-left: 15px;
+  }
   .header-nav{
-    display: inline-block;
     float: right;
-    margin: 0;
     padding-right: 15px;
+  }
+  .header-nav,.menu-nav{
+    display: inline-block;
     .el-menu{
       height: $nav-height;
       .el-menu-item.is-active{
@@ -111,6 +195,26 @@ $nav-height:50px;
           }
         }
       }
+    }
+  }
+}
+.el-aside{
+  ul.el-menu.sidebar {
+    li.toggle-sideber{
+      text-align: center;
+      padding: 5px 0;
+      a.sider-opend i{
+      }
+      a.sider-closed i{
+        transform: rotate(90deg);
+      }
+    }
+    .el-submenu [class^=el-icon-],.el-menu-item [class^=el-icon-]{
+      margin-right:20px;
+    }
+    .el-menu-item, .el-submenu__title{
+      height: $nav-height !important;
+      line-height: $nav-height !important;
     }
   }
 }
