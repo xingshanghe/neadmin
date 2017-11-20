@@ -30,6 +30,9 @@
 
 <script>
 export default {
+  head: {
+    title: '登录'
+  },
   middleware: 'anonymous',
   data() {
     return {

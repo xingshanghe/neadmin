@@ -1,0 +1,127 @@
+@header-color: #1976D2;
+@white: #ffffff;
+@bg-color: #EEF5F9;
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: @bg-color;
+}
+
+#app {
+  height: 100%;
+}
+
+.el-header {
+  background-color: @header-color;
+  color: @white !important;
+  line-height: 60px;
+  padding: 0;
+  .logo {
+    width: 200px;
+    float: left;
+    h1 {
+      line-height: 60px;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+  }
+  .header-nav {
+    display: inline-block;
+    float: right;
+    margin: 0;
+
+    .el-submenu__title {
+      i {
+        color: @white;
+      }
+      border-bottom-color: @header-color !important;
+    }
+
+    .el-menu[role='menu'] {
+      background-color: @white !important;
+
+      .el-menu-item {
+        background-color: @white !important;
+        color: #000 !important;
+      }
+
+      i {
+        color: #000 !important;
+      }
+    }
+  }
+}
+
+.el-aside {
+  background-color: @white;
+  line-height: 200px;
+
+  .el-menu[role='menubar'] {
+    min-height: 100% !important;
+  }
+}
+
+.breadcrumb {
+  margin-bottom: 20px;
+  h3 {
+    margin: 0;
+    padding: 0;
+  }
+
+  .el-breadcrumb {
+    float: right;
+    line-height: 25px;
+  }
+}
+
+.full-width {
+  width: 100% !important;
+}
+
+.center {
+  text-align: center;
+}
+
+.text-muted {
+  color: #99abb4;
+}
+
+.bg-blue {
+  background-color: #1976D2;
+}
+
+.bg-green {
+  background-color: #67C23A;
+}
+
+.bg-purple {
+  background-color: #1976D2;
+}
+
+.bg-pink {
+  background-color: #EF5350;
+}
+
+.pagination-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: right;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+  background-color: @white;
+}
+
+::-webkit-scrollbar-track {
+  background-color: @white;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 12px;
+  background-color: #D8DCE6;
+}

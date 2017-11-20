@@ -3,7 +3,8 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'Neadmin',
+    titleTemplate: '%s - Neadmin',
+    title: 'Welcome',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -51,7 +52,8 @@ module.exports = {
   },
   css: [
     'normalize.css/normalize.css',
-    'element-ui/lib/theme-chalk/index.css'
+    'element-ui/lib/theme-chalk/index.css',
+    '~/assets/css/icons/icomoon/styles.css'
   ],
   plugins: [
     '~/plugins/element-ui'
