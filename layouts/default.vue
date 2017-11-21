@@ -146,9 +146,11 @@ export default {
   methods: {
     toggleSidebar(isCollapse) {
       this.isCollapse = !isCollapse;
+      this.$store.dispatch('toggleSideBar');
     },
     toggleSecSidebar(secCollapse) {
       this.secCollapse = !secCollapse;
+      this.$store.dispatch('toggleSecSideBar');
     }
   },
   mounted() {

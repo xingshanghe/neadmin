@@ -3,7 +3,9 @@ import consts from '~/utils/consts.js';
 import {setToken, jwtHeader} from '~/utils/auth.js';
 
 export const state = () => {
-  user: null;
+  return {
+    user: null
+  };
 };
 
 export const mutations = {
