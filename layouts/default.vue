@@ -2,13 +2,11 @@
   <el-container style="height: 100%">
     <el-header>
       <div class="logo">
-        <a href="https://github.com/xingshanghe/neadmin" target="_blank">
-          CMOP管理控制台
-        </a>
+        <nuxt-link to="/">CMOP管理控制台</nuxt-link>
       </div>
       <div class="menu-nav">
         <el-menu  mode="horizontal" background-color="#37474f" text-color="#ffffff" active-text-color="#fff">
-          <el-menu-item index="1"><i class="el-icon-search"></i>产品与服务</el-menu-item>
+          <el-menu-item index="1"><i class="el-icon-menu"></i>产品与服务</el-menu-item>
         </el-menu>
       </div>
       <div class="header-nav">
@@ -21,18 +19,19 @@
             <el-menu-item index="3-2">选项2</el-menu-item>
             <el-menu-item index="3-3">选项3</el-menu-item>
           </el-submenu>
-          <el-menu-item index="4"><a href="#">订单管理</a></el-menu-item>
-          <el-submenu index="my" menu-trigger="click">
+          <el-menu-item index="/accounts/work-order"><nuxt-link to="/accounts/work-order">工单管理</nuxt-link></el-menu-item>
+          <el-submenu index="/accounts" menu-trigger="click">
             <template slot="title"><img src="~/assets/images/img-holder.jpg" style="width:30px;"> {{currentUser.account.username && currentUser.account.profile.nickname}} </template>
-            <el-menu-item index="/my/profile"><i class="icon-cog"></i> 个人设置</el-menu-item>
-            <el-menu-item index="/signOut"><i class="icon-switch"></i> 安全退出</el-menu-item>
+            <el-menu-item index="/accounts/profile"><nuxt-link to="/accounts/profile"><i class="icon-cog"></i> 个人设置</nuxt-link></el-menu-item>
+            <el-menu-item index="/accounts/logout"><nuxt-link to="/accounts/logout"><i class="icon-switch"></i> 安全退出</nuxt-link></el-menu-item>
           </el-submenu>
         </el-menu>
       </div>
+      <fork></fork>
     </el-header>
     <el-container>
       <el-aside ref="sidebar" :width="sidebarWidth" >
-        <el-menu default-active="1-4-1" class="sidebar"  :collapse="isCollapse"  style="height: 100%" @select="handleSelect">
+        <el-menu default-active="1-4-1" class="sidebar"  :collapse="isCollapse"  style="height: 100%" @select="handleSelect" >
           <li class="toggle-sidebar">
             <a @click="toggleSidebar(isCollapse)" :class="!isCollapse?'sider-opened':'sider-closed'">
               <i class="icon-paragraph-justify3"></i>
@@ -41,14 +40,14 @@
           <ne-menu-item :items="allmenudata" @selected="selectedSub" :isCollapse="isCollapse"></ne-menu-item>
         </el-menu>
       </el-aside>
-      <el-aside ref="secSidebar" class="secSidebar" :width="secSidebarWidth" >
-        <el-menu class="sidebar"  style="height: 100%" :style="secMenuStyle">
-          <li class="toggle-sidebar">
-            <a  >
+      <el-aside v-if="menudata.sub" ref="secSidebar" class="secSidebar" :width="secSidebarWidth" >
+        <el-menu class="sidebar"  style="height: 100%" :style="secMenuStyle"  >
+          <li class="toggle-sidebar" v-if="menudata.subBackUrl">
+            <nuxt-link :to="menudata.subBackUrl" >
               <i class="el-icon-back"></i>
-            </a>
+            </nuxt-link>
           </li>
-          <ne-menu-item :items="menudata" :isCollapse="false"></ne-menu-item>  
+          <ne-menu-item :items="menudata.sub" :isCollapse="false"></ne-menu-item>  
         </el-menu>
         <div class="sec-sidebar-toggle" :class="secSidebarSwitch">
           <div class="sec-sidebar-toggle-inner">
@@ -72,20 +71,24 @@
 
 <script>
 import neMenuItem from '~/components/ne-menu-item.vue';
-const menudata = require('~/static/menu.json');
-const allmenudata = require('~/static/allmenu.json');
+import fork from '~/components/fork.vue';
+const allmenudata = require('~/static/menu.json');
 export default {
   name: 'default-layout',
   components: {
-    neMenuItem
+    neMenuItem,
+    fork
   },
   data() {
     return {
       currentUser: this.$store.state.user,
       isCollapse: this.$store.state.sidebarCollapse, // 一级菜单是否折叠
       secCollapse: this.$store.state.secSidebarCollapse, // 二级菜单是否折叠
-      menudata: menudata,
-      allmenudata: allmenudata
+      allmenudata: allmenudata,
+      menudata: {
+        sub: null,
+        subBackUrl: null
+      }
     };
   },
   computed: {
@@ -111,7 +114,15 @@ export default {
       console.log(key, keyPath);
     },
     selectedSub(item) {
-      console.error(item);
+      if ((item.hasOwnProperty('sub')) && (item.sub.length > 0)) {
+        this.menudata.sub = item.sub;
+        this.menudata.subBackUrl = item['sub-back-url'];
+        
+        this.toggleSecSidebar(true);
+      } else {
+        this.menudata.sub = null;
+        this.menudata.subBackUrl = null;
+      }
     },
     toggleSidebar(isCollapse) {
       // TODO 处理单级菜单
@@ -136,7 +147,7 @@ export default {
 </script>
 
 
-<style rel="stylesheet/scss" lang="scss">
+<style rel="stylesheet/scss" lang="scss" >
 @import '~assets/scss/index.scss';
 $black:#37474f;
 $nav-height:50px;
@@ -145,6 +156,9 @@ $nav-height:50px;
   background-color: $black;
   color: #ffffff !important;
   line-height: $nav-height !important;
+  i{
+    color: #ffffff !important;
+  }
   .logo,.menu-nav{
     display: inline-block;
     float: left;

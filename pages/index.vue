@@ -4,7 +4,7 @@
   </div>
 </template>
 <template>
-  <div>sss</div>
+  <div>首页</div>
 </template>
 <script>
 export default {
@@ -12,6 +12,5 @@ export default {
     title: '首页'
   },
   middleware: 'authenticated'
-
 };
 </script>

@@ -1,20 +1,20 @@
 [
   {
     "icon":"el-icon-location",
-    "title":"导航11111",
+    "title":"导航1",
     "link":"#",
     "children":[
       {
         "icon":"xxx",
         "isgroup":true,
-        "title":"分组11111",
+        "title":"分组1",
         "children":[
           {
-            "title":"选项11111",
+            "title":"选项1",
             "link":"#"
           },
           {
-            "title":"选项21111",
+            "title":"选项2",
             "link":"#"
           }
         ]
@@ -34,14 +34,75 @@
             "link":"#",
             "children":[
               {
-                "title":"选项1",
+                "title":"选项5",
                 "link":"#"
               }
             ]
           }
         ]
+      },
+      {
+        "title":"选项6",
+        "link":"#",
+        "sub-back-url": "#",
+        "sub":[
+          {
+            "icon":"el-icon-location",
+            "title":"二级导航1",
+            "link":"#",
+            "children":[
+              {
+                "icon":"xxx",
+                "isgroup":true,
+                "title":"二级分组1",
+                "children":[
+                  {
+                    "title":"二级选项1",
+                    "link":"#"
+                  },
+                  {
+                    "title":"二级选项2",
+                    "link":"#"
+                  }
+                ]
+              },
+              {
+                "isgroup":true,
+                "title":"二级分组2",
+                "children":[
+                  {
+                    "icon":"xxx",
+                    "title":"二级选项3",
+                    "link":"#"
+                  },
+                  {
+                    "icon":"xxx",
+                    "title":"二级选项4",
+                    "link":"#",
+                    "children":[
+                      {
+                        "title":"二级选项1",
+                        "link":"#"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "icon":"el-icon-menu",
+            "title":"导航2",
+            "link":"#"
+          },
+          {
+            "icon":"el-icon-setting",
+            "title":"导航3",
+            "link":"#"
+          }
+        ]
       }
-    ]
+    ]    
   },
   {
     "icon":"el-icon-menu",

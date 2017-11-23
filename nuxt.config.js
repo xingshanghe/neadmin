@@ -3,7 +3,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    titleTemplate: '%s - Neadmin',
+    titleTemplate: '%s - CMOP管理控制台',
     title: 'Welcome',
     meta: [
       { charset: 'utf-8' },
