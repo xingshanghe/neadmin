@@ -6,5 +6,4 @@ export default function({ isServer, store, req }) {
   }
   const menusCollapse = isServer ? getMenusCollapseFromCookie(req) : getMenusCollapseFromLocalStorage();
   store.commit('SET_MENUS_COLLAPSE', menusCollapse);
-
 };

@@ -82,8 +82,8 @@ export default {
   data() {
     return {
       currentUser: this.$store.state.user,
-      isCollapse: this.$store.state.sidebarCollapse === undefined ? true : this.$store.state.sidebarCollapse, // 一级菜单是否折叠
-      secCollapse: this.$store.state.secSidebarCollapse === undefined ? false : this.$store.state.secSidebarCollapse, // 二级菜单是否折叠
+      isCollapse: this.$store.state.sidebarCollapse, // 一级菜单是否折叠,
+      secCollapse: this.$store.state.secSidebarCollapse, // 二级菜单是否折叠
       allmenudata: allmenudata,
       menudata: {
         sub: null,
@@ -140,7 +140,6 @@ export default {
     }
   },
   mounted() {
-    // console.error(this.$router);
   }
 };
 </script>

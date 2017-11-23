@@ -31,9 +31,9 @@ export const getMenusCollapseFromCookie = (req)=>{
 };
 
 export const getMenusCollapseFromLocalStorage = () =>{
-  let collapse = window.localStorage.getItem(consts.SIDEBAR_COLLAPSE_KEY);
-  let secCollapse = window.localStorage.getItem(consts.SEC_SIDEBAR_COLLAPSE_KEY);
-  collapse = collapse === 'true';
-  secCollapse = secCollapse === 'true';
-  return {collapse, secCollapse};
+  let sidebarCollapse = window.localStorage.getItem(consts.SIDEBAR_COLLAPSE_KEY);
+  let secSidebarCollapse = window.localStorage.getItem(consts.SEC_SIDEBAR_COLLAPSE_KEY);
+  sidebarCollapse = sidebarCollapse ? sidebarCollapse === 'true' : true;
+  secSidebarCollapse = secSidebarCollapse ? secSidebarCollapse === 'true' : false;
+  return {sidebarCollapse, secSidebarCollapse};
 };
