@@ -9,7 +9,7 @@
           <el-menu-item index="1"><i class="el-icon-menu"></i>产品与服务</el-menu-item>
         </el-menu>
       </div>
-      <div class="header-nav">
+      <div class="header-nav" style="padding-right:50px;">
         <el-menu  mode="horizontal" background-color="#37474f" text-color="#ffffff" active-text-color="#fff">
           <el-menu-item index="1"><i class="el-icon-search"></i>搜索</el-menu-item>
           <el-menu-item index="2"><el-badge :value="3" class="item"><i class="el-icon-bell"></i></el-badge></el-badge></el-menu-item>
@@ -82,8 +82,8 @@ export default {
   data() {
     return {
       currentUser: this.$store.state.user,
-      isCollapse: this.$store.state.sidebarCollapse, // 一级菜单是否折叠
-      secCollapse: this.$store.state.secSidebarCollapse, // 二级菜单是否折叠
+      isCollapse: this.$store.state.sidebarCollapse === undefined ? true : this.$store.state.sidebarCollapse, // 一级菜单是否折叠
+      secCollapse: this.$store.state.secSidebarCollapse === undefined ? false : this.$store.state.secSidebarCollapse, // 二级菜单是否折叠
       allmenudata: allmenudata,
       menudata: {
         sub: null,
@@ -117,7 +117,6 @@ export default {
       if ((item.hasOwnProperty('sub')) && (item.sub.length > 0)) {
         this.menudata.sub = item.sub;
         this.menudata.subBackUrl = item['sub-back-url'];
-        
         this.toggleSecSidebar(true);
       } else {
         this.menudata.sub = null;

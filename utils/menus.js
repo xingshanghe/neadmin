@@ -22,11 +22,11 @@ export const unsetMenusCollapse = ()=>{
 };
 
 export const getMenusCollapseFromCookie = (req)=>{
-  if (!req.headers.cookie) return;
+  if (!req.headers.cookie) return {sidebarCollapse: true, secSidebarCollapse: false};
   let sidebarCollapse = req.headers.cookie.split(';').find(c => c.trim().startsWith(consts.SIDEBAR_COLLAPSE_KEY + '='));
   let secSidebarCollapse = req.headers.cookie.split(';').find(c => c.trim().startsWith(consts.SEC_SIDEBAR_COLLAPSE_KEY + '='));
-  sidebarCollapse = sidebarCollapse.split('=')[1] === 'true';
-  secSidebarCollapse = secSidebarCollapse.split('=')[1] === 'true';
+  sidebarCollapse = sidebarCollapse ? sidebarCollapse.split('=')[1] === 'true' : true;
+  secSidebarCollapse = secSidebarCollapse ? secSidebarCollapse.split('=')[1] === 'true' : false;
   return {sidebarCollapse, secSidebarCollapse};
 };
 

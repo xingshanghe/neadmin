@@ -1,7 +1,29 @@
-[
+[ 
   {
     "icon":"el-icon-location",
-    "title":"导航1",
+    "title":"管理控制台",
+    "link":"#",
+    "sub":[
+      {
+        "icon":"xxx",
+        "isgroup":true,
+        "title":"管理控制台",
+        "children":[
+          {
+            "title":"资源概览",
+            "link":"#"
+          },
+          {
+            "title":"应用分析组管理",
+            "link":"#"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "icon":"el-icon-location",
+    "title":"计算与网络",
     "link":"#",
     "children":[
       {

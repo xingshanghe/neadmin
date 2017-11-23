@@ -25,6 +25,12 @@ export const getters = {
   isAuthenticated: function(state) {
     return !!state.user;
   },
+  sidebarCollapse: function(state) {
+    return state.sidebarCollapse;
+  },
+  secSidebarCollapse: function(state) {
+    return state.secSidebarCollapse;
+  },
   user: function(state) {
     return state.user;
   }
