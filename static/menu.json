@@ -2,24 +2,7 @@
   {
     "icon":"el-icon-location",
     "title":"管理控制台",
-    "link":"#",
-    "sub":[
-      {
-        "icon":"xxx",
-        "isgroup":true,
-        "title":"管理控制台",
-        "children":[
-          {
-            "title":"资源概览",
-            "link":"#"
-          },
-          {
-            "title":"应用分析组管理",
-            "link":"#"
-          }
-        ]
-      }
-    ]
+    "link":"#"
   },
   {
     "icon":"el-icon-location",
@@ -28,35 +11,19 @@
     "children":[
       {
         "icon":"xxx",
-        "isgroup":true,
-        "title":"分组1",
-        "children":[
-          {
-            "title":"选项1",
-            "link":"#"
-          },
-          {
-            "title":"选项2",
-            "link":"#"
-          }
-        ]
-      },
-      {
-        "isgroup":true,
-        "title":"分组2",
-        "children":[
+        "title":"资源概览",
+        "sub":[
           {
             "icon":"xxx",
-            "title":"选项3",
-            "link":"#"
-          },
-          {
-            "icon":"xxx",
-            "title":"选项4",
-            "link":"#",
+            "isgroup":true,
+            "title":"资源概览",
             "children":[
               {
-                "title":"选项5",
+                "title":"概览",
+                "link":"#"
+              },
+              {
+                "title":"应用分析组管理",
                 "link":"#"
               }
             ]
@@ -64,63 +31,76 @@
         ]
       },
       {
-        "title":"选项6",
-        "link":"#",
-        "sub-back-url": "#",
+        "icon":"xxx",
+        "title":"云服务器ECS",
         "sub":[
           {
-            "icon":"el-icon-location",
-            "title":"二级导航1",
-            "link":"#",
+            "icon":"xxx",
+            "isgroup":true,
+            "title":"云服务器ECS",
             "children":[
               {
-                "icon":"xxx",
-                "isgroup":true,
-                "title":"二级分组1",
-                "children":[
-                  {
-                    "title":"二级选项1",
-                    "link":"#"
-                  },
-                  {
-                    "title":"二级选项2",
-                    "link":"#"
-                  }
-                ]
+                "title":"概览",
+                "link":"#"
               },
               {
-                "isgroup":true,
-                "title":"二级分组2",
-                "children":[
-                  {
-                    "icon":"xxx",
-                    "title":"二级选项3",
-                    "link":"#"
-                  },
-                  {
-                    "icon":"xxx",
-                    "title":"二级选项4",
-                    "link":"#",
-                    "children":[
-                      {
-                        "title":"二级选项1",
-                        "link":"#"
-                      }
-                    ]
-                  }
-                ]
+                "title":"实例列表",
+                "link":"#"
+              },
+              {
+                "title":"磁盘",
+                "link":"#"
+              },
+              {
+                "title":"快照和镜像",
+                "link":"#"
+              },
+              {
+                "title":"网络与安全",
+                "link":"#"
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "icon":"xxx",
+        "title":"专用网络VPC",
+        "sub":[
           {
-            "icon":"el-icon-menu",
-            "title":"导航2",
-            "link":"#"
-          },
-          {
-            "icon":"el-icon-setting",
-            "title":"导航3",
-            "link":"#"
+            "icon":"xxx",
+            "isgroup":true,
+            "title":"专用网络VPC",
+            "children":[
+              {
+                "title":"概览",
+                "link":"#"
+              },
+              {
+                "title":"专用网络",
+                "link":"#"
+              },
+              {
+                "title":"NAT网关",
+                "link":"#"
+              },
+              {
+                "title":"Internet网关",
+                "link":"#"
+              },
+              {
+                "title":"VPN",
+                "link":"#"
+              },
+              {
+                "title":"弹性公网IP",
+                "link":"#"
+              },
+              {
+                "title":"高速通道",
+                "link":"#"
+              }
+            ]
           }
         ]
       }
@@ -128,12 +108,42 @@
   },
   {
     "icon":"el-icon-menu",
-    "title":"导航2",
+    "title":"云桌面",
+    "link":"#",
+    "children":[
+      {
+        "title":"云桌面",
+        "link":"#"
+      },
+      {
+        "title":"桌面支撑服务",
+        "link":"#"
+      }
+    ]
+  },
+  {
+    "icon":"el-icon-setting",
+    "title":"图形操作",
+    "link":"#",
+    "children":[
+      {
+        "title":"查看帮助",
+        "link":"#"
+      },
+      {
+        "title":"构建网络",
+        "link":"#"
+      }
+    ]
+  },
+  {
+    "icon":"el-icon-setting",
+    "title":"用户管理",
     "link":"#"
   },
   {
     "icon":"el-icon-setting",
-    "title":"导航3",
+    "title":"系统设置",
     "link":"#"
   }
 ]
