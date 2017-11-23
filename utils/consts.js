@@ -5,5 +5,7 @@ export default Object.freeze({
   URL: 'http://neadmin.com/api',
   API_URL: '/api',
   JWT_KEY: 'jwt',
-  USER_KEY: 'user'
+  USER_KEY: 'user',
+  SIDEBAR_COLLAPSE_KEY: 'sidbar_collapse',
+  SEC_SIDEBAR_COLLAPSE_KEY: 'sec_sidbar_collapse'
 });

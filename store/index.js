@@ -1,16 +1,23 @@
 import axios from 'axios';
 import consts from '~/utils/consts.js';
 import {setToken, jwtHeader} from '~/utils/auth.js';
+import {setMenusCollapse} from '~/utils/menus.js';
 
 export const state = () => {
   return {
-    user: null
+    user: null,
+    sidebarCollapse: true,
+    secSidebarCollapse: false
   };
 };
 
 export const mutations = {
   SET_USER: function(state, user) {
     state.user = user || null;
+  },
+  SET_MENUS_COLLAPSE: function(state, {sidebarCollapse, secSidebarCollapse}) {
+    state.sidebarCollapse = sidebarCollapse;
+    state.secSidebarCollapse = secSidebarCollapse;
   }
 };
 
@@ -25,6 +32,10 @@ export const getters = {
 
 export const actions = {
   nuxtServerInit() {},
+  menusCollapse({commit}, {sidebarCollapse, secSidebarCollapse}) {
+    commit('SET_MENUS_COLLAPSE', {sidebarCollapse, secSidebarCollapse});
+    setMenusCollapse({sidebarCollapse, secSidebarCollapse});
+  },
   async login({commit}, {username, password, captcha}) {
     try {
       const {data: {code: code, data: {token: token, user: user}, msg: msg}} = await axios.post(consts.API_URL + '/accounts/login', {username, password, captcha});
@@ -45,3 +56,4 @@ export const actions = {
     }
   }
 };
+

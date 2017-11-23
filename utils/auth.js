@@ -16,9 +16,9 @@ export const setToken = (token) => {
 export const unsetToken = ()=>{
   if (process.SERVER_BUILD) return;
   window.localStorage.removeItem(consts.JWT_KEY);
-  window.localStorage.setItem(consts.USER_KEY);
+  window.localStorage.removeItem(consts.USER_KEY);
 
-  Cookie.set(consts.JWT_KEY);
+  Cookie.remove(consts.JWT_KEY);
 };
 
 export const getUserFromCookie = (req)=>{

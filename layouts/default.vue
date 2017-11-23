@@ -55,7 +55,8 @@
             <div class="sec-sidebar-toggle-collapse-bg" :class="secSidebarSwitch"></div>
             <div class="sec-sidebar-toggle-collapse">
               <div class="collapse-left" @click="toggleSecSidebar(secCollapse)">
-                <i class="icon-arrow-left22"></i>
+                <i v-if="!secCollapse" class="icon-arrow-left22"></i>
+                <i v-else class="icon-arrow-right22"></i>
               </div>
             </div>
           </div>
@@ -81,8 +82,8 @@ export default {
   data() {
     return {
       currentUser: this.$store.state.user,
-      isCollapse: true, // 一级菜单是否折叠
-      secCollapse: false, // 二级菜单是否折叠
+      isCollapse: this.$store.state.sidebarCollapse, // 一级菜单是否折叠
+      secCollapse: this.$store.state.secSidebarCollapse, // 二级菜单是否折叠
       menudata: menudata,
       allmenudata: allmenudata
     };
@@ -115,9 +116,17 @@ export default {
     toggleSidebar(isCollapse) {
       // TODO 处理单级菜单
       this.isCollapse = !isCollapse;
+
+      const sidebarCollapse = this.isCollapse;
+      const secSidebarCollapse = this.secCollapse;
+      this.$store.dispatch('menusCollapse', {sidebarCollapse, secSidebarCollapse});
     },
     toggleSecSidebar(secCollapse) {
       this.secCollapse = !secCollapse;
+
+      const sidebarCollapse = this.isCollapse;
+      const secSidebarCollapse = this.secCollapse;
+      this.$store.dispatch('menusCollapse', {sidebarCollapse, secSidebarCollapse});
     }
   },
   mounted() {
