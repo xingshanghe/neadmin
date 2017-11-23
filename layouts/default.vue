@@ -3,7 +3,7 @@
     <el-header>
       <div class="logo">
         <a href="https://github.com/xingshanghe/neadmin" target="_blank">
-          管理控制台
+          CMOP管理控制台
         </a>
       </div>
       <div class="menu-nav">
@@ -32,73 +32,23 @@
     </el-header>
     <el-container>
       <el-aside ref="sidebar" :width="sidebarWidth" >
-        <el-menu default-active="1-4-1" class="sidebar"  :collapse="isCollapse"  style="height: 100%">
+        <el-menu default-active="1-4-1" class="sidebar"  :collapse="isCollapse"  style="height: 100%" @select="handleSelect">
           <li class="toggle-sidebar">
             <a @click="toggleSidebar(isCollapse)" :class="!isCollapse?'sider-opened':'sider-closed'">
               <i class="icon-paragraph-justify3"></i>
             </a>
           </li>
-          <el-submenu index="1">
-            <template slot="title">
-              <i class="el-icon-location"></i>
-              <span slot="title">导航一</span>
-            </template>
-            <el-menu-item-group>
-              <span slot="title">分组一</span>
-              <el-menu-item index="1-1">选项1</el-menu-item>
-              <el-menu-item index="1-2">选项2</el-menu-item>
-            </el-menu-item-group>
-            <el-menu-item-group title="分组2">
-              <el-menu-item index="1-3">选项3</el-menu-item>
-            </el-menu-item-group>
-            <el-submenu index="1-4">
-              <span slot="title">选项4</span>
-              <el-menu-item index="1-4-1">选项1</el-menu-item>
-            </el-submenu>
-          </el-submenu>
-          <el-menu-item index="2">
-            <i class="el-icon-menu"></i>
-            <span slot="title">导航二</span>
-          </el-menu-item>
-          <el-menu-item index="3">
-            <i class="el-icon-setting"></i>
-            <span slot="title">导航三</span>
-          </el-menu-item>
+          <ne-menu-item :items="allmenudata" @selected="selectedSub" :isCollapse="isCollapse"></ne-menu-item>
         </el-menu>
       </el-aside>
       <el-aside ref="secSidebar" class="secSidebar" :width="secSidebarWidth" >
-        <el-menu default-active="1-4-1" class="sidebar"  style="height: 100%" :style="secMenuStyle">
+        <el-menu class="sidebar"  style="height: 100%" :style="secMenuStyle">
           <li class="toggle-sidebar">
             <a  >
               <i class="el-icon-back"></i>
             </a>
           </li>
-          <el-submenu index="1">
-            <template slot="title">
-              <i class="el-icon-location"></i>
-              <span slot="title">导航一</span>
-            </template>
-            <el-menu-item-group>
-              <span slot="title">分组一</span>
-              <el-menu-item index="1-1">选项1</el-menu-item>
-              <el-menu-item index="1-2">选项2</el-menu-item>
-            </el-menu-item-group>
-            <el-menu-item-group title="分组2">
-              <el-menu-item index="1-3">选项3</el-menu-item>
-            </el-menu-item-group>
-            <el-submenu index="1-4">
-              <span slot="title">选项4</span>
-              <el-menu-item index="1-4-1">选项1</el-menu-item>
-            </el-submenu>
-          </el-submenu>
-          <el-menu-item index="2">
-            <i class="el-icon-menu"></i>
-            <span slot="title">导航二</span>
-          </el-menu-item>
-          <el-menu-item index="3">
-            <i class="el-icon-setting"></i>
-            <span slot="title">导航三</span>
-          </el-menu-item>
+          <ne-menu-item :items="menudata" :isCollapse="false"></ne-menu-item>  
         </el-menu>
         <div class="sec-sidebar-toggle" :class="secSidebarSwitch">
           <div class="sec-sidebar-toggle-inner">
@@ -120,40 +70,58 @@
 </template>
 
 <script>
+import neMenuItem from '~/components/ne-menu-item.vue';
+const menudata = require('~/static/menu.json');
+const allmenudata = require('~/static/allmenu.json');
 export default {
   name: 'default-layout',
+  components: {
+    neMenuItem
+  },
   data() {
     return {
       currentUser: this.$store.state.user,
-      isCollapse: true,
-      secCollapse: false
+      isCollapse: true, // 一级菜单是否折叠
+      secCollapse: false, // 二级菜单是否折叠
+      menudata: menudata,
+      allmenudata: allmenudata
     };
   },
   computed: {
+    // 一级菜单宽度
     sidebarWidth: function() {
       return this.isCollapse ? 'auto' : '200px';
     },
+    // 二级菜单宽度
     secSidebarWidth: function() {
       return this.secCollapse ? 'auto' : '200px';
     },
+    // 二级菜单切换按钮图标类
     secSidebarSwitch: function() {
       return !this.secCollapse ? 'left' : 'right';
     },
+    // 二级菜单切换隐藏样式
     secMenuStyle: function() {
       return !this.secCollapse ? 'display:block;' : 'display:none;';
     }
   },
   methods: {
+    handleSelect(key, keyPath) {
+      console.log(key, keyPath);
+    },
+    selectedSub(item) {
+      console.error(item);
+    },
     toggleSidebar(isCollapse) {
+      // TODO 处理单级菜单
       this.isCollapse = !isCollapse;
-      this.$store.dispatch('toggleSideBar');
     },
     toggleSecSidebar(secCollapse) {
       this.secCollapse = !secCollapse;
-      this.$store.dispatch('toggleSecSideBar');
     }
   },
   mounted() {
+    // console.error(this.$router);
   }
 };
 </script>
