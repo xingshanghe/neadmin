@@ -19,7 +19,7 @@
           </el-submenu>
         </template>
         <template v-else>
-          <el-menu-item :index="level +'-'+ String(key)" @click="selectItem(item)">
+          <el-menu-item :index="item.link" @click="selectItem(item)" :class="{'is-active':item.link===$route.path}">
             <template v-if="!isCollapse">
               <i v-if="item.hasOwnProperty('icon') && item.icon !== ''" :class="item.icon"></i>
               <span slot="title">{{item.title}}</span>
@@ -39,7 +39,6 @@
 </template>
 
 <script>
-// 因为在el-menu-item包裹了一层section导致 菜单只有一级时报错，需手动处理，因系统中多位二级菜单，故暂时未做处理
 export default {
   name: 'ne-menu-item',
   props: {

@@ -31,7 +31,7 @@
     </el-header>
     <el-container>
       <el-aside ref="sidebar" :width="sidebarWidth" >
-        <el-menu default-active="1-4-1" class="sidebar"  :collapse="isCollapse"  style="height: 100%" @select="handleSelect" >
+        <el-menu :default-active="defaultActive" class="sidebar"  :collapse="isCollapse"  style="height: 100%"  :router="true">
           <li class="toggle-sidebar">
             <a @click="toggleSidebar(isCollapse)" :class="!isCollapse?'sider-opened':'sider-closed'">
               <i class="icon-paragraph-justify3"></i>
@@ -41,7 +41,7 @@
         </el-menu>
       </el-aside>
       <el-aside v-if="menudata.sub" ref="secSidebar" class="secSidebar" :width="secSidebarWidth" >
-        <el-menu class="sidebar"  style="height: 100%" :style="secMenuStyle"  >
+        <el-menu :default-active="defaultActive" class="sidebar"   style="height: 100%" :style="secMenuStyle"  @select="handleSelect" :router="true">
           <li class="toggle-sidebar" v-if="menudata.subBackUrl">
             <nuxt-link :to="menudata.subBackUrl" >
               <i class="el-icon-back"></i>
@@ -85,9 +85,11 @@ export default {
       isCollapse: this.$store.state.sidebarCollapse, // 一级菜单是否折叠,
       secCollapse: this.$store.state.secSidebarCollapse, // 二级菜单是否折叠
       allmenudata: allmenudata,
+      defaultActive: this.$route.path,
       menudata: {
         sub: null,
         subBackUrl: null
+        // active: this.$route.path
       }
     };
   },
@@ -115,9 +117,13 @@ export default {
     },
     selectedSub(item) {
       if ((item.hasOwnProperty('sub')) && (item.sub.length > 0)) {
+
         this.menudata.sub = item.sub;
         this.menudata.subBackUrl = item['sub-back-url'];
-        this.toggleSecSidebar(true);
+        // this.menudata.active = item.link;
+        this.defaultActive = item.link;
+        this.toggleSecSidebar(true);// 打开二级菜单
+        // TODO 清除当前二级菜单 激活状态
       } else {
         this.menudata.sub = null;
         this.menudata.subBackUrl = null;

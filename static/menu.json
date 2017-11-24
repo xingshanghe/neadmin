@@ -1,17 +1,17 @@
-[ 
+[
   {
     "icon":"el-icon-location",
     "title":"管理控制台",
-    "link":"#"
+    "link":"/dashboard"
   },
   {
     "icon":"el-icon-location",
     "title":"计算与网络",
-    "link":"#",
     "children":[
       {
         "icon":"xxx",
         "title":"资源概览",
+        "link":"/computed-network",
         "sub":[
           {
             "icon":"xxx",
@@ -20,11 +20,11 @@
             "children":[
               {
                 "title":"概览",
-                "link":"#"
+                "link":"/computed-network"
               },
               {
                 "title":"应用分析组管理",
-                "link":"#"
+                "link":"/computed-network/analysis"
               }
             ]
           }
@@ -33,6 +33,7 @@
       {
         "icon":"xxx",
         "title":"云服务器ECS",
+        "link":"/computed-network/ecs",
         "sub":[
           {
             "icon":"xxx",
@@ -41,23 +42,23 @@
             "children":[
               {
                 "title":"概览",
-                "link":"#"
+                "link":"/computed-network/ecs"
               },
               {
                 "title":"实例列表",
-                "link":"#"
+                "link":"/computed-network/ecs/list"
               },
               {
                 "title":"磁盘",
-                "link":"#"
+                "link":"/computed-network/ecs/disks"
               },
               {
                 "title":"快照和镜像",
-                "link":"#"
+                "link":"/computed-network/ecs/snapshot-image"
               },
               {
                 "title":"网络与安全",
-                "link":"#"
+                "link":"/computed-network/ecs/network-safety"
               }
             ]
           }
@@ -66,6 +67,7 @@
       {
         "icon":"xxx",
         "title":"专用网络VPC",
+        "link":"/computed-network/vpc",
         "sub":[
           {
             "icon":"xxx",
@@ -74,76 +76,70 @@
             "children":[
               {
                 "title":"概览",
-                "link":"#"
+                "link":"/computed-network/vpc"
               },
               {
                 "title":"专用网络",
-                "link":"#"
+                "link":"/computed-network/vpc/list"
               },
               {
                 "title":"NAT网关",
-                "link":"#"
+                "link":"/computed-network/vpc/nat"
               },
               {
                 "title":"Internet网关",
-                "link":"#"
+                "link":"/computed-network/vpc/internet-nat"
               },
               {
                 "title":"VPN",
-                "link":"#"
+                "link":"/computed-network/vpc/vpn"
               },
               {
                 "title":"弹性公网IP",
-                "link":"#"
-              },
-              {
-                "title":"高速通道",
-                "link":"#"
+                "link":"/computed-network/vpc/eip"
               }
             ]
           }
         ]
       }
-    ]    
+    ]
   },
   {
     "icon":"el-icon-menu",
     "title":"云桌面",
-    "link":"#",
     "children":[
       {
         "title":"云桌面",
-        "link":"#"
+        "link":"/desktop"
       },
       {
         "title":"桌面支撑服务",
-        "link":"#"
+        "link":"/desktop/support"
       }
     ]
   },
   {
     "icon":"el-icon-setting",
     "title":"图形操作",
-    "link":"#",
     "children":[
       {
         "title":"查看帮助",
-        "link":"#"
+        "link":"/graph/support"
       },
       {
         "title":"构建网络",
-        "link":"#"
+        "link":"/graph"
       }
     ]
   },
   {
     "icon":"el-icon-setting",
     "title":"用户管理",
-    "link":"#"
+    "link":"/users"
   },
   {
     "icon":"el-icon-setting",
     "title":"系统设置",
-    "link":"#"
+    "link":"/settings"
   }
 ]
