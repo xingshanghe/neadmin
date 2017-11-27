@@ -1,6 +1,6 @@
 import consts from '~/utils/consts.js';
 import Cookie from 'js-cookie';
-
+import _ from 'lodash';
 // 客户端设置菜单状态
 export const setMenusCollapse = ({sidebarCollapse, secSidebarCollapse}) => {
   if (process.SERVER_BUILD) return;
@@ -36,4 +36,29 @@ export const getMenusCollapseFromLocalStorage = () =>{
   sidebarCollapse = sidebarCollapse ? sidebarCollapse === 'true' : true;
   secSidebarCollapse = secSidebarCollapse ? secSidebarCollapse === 'true' : false;
   return {sidebarCollapse, secSidebarCollapse};
+};
+
+export const createMapOfRoutes = (menus) => {
+  var mapMenus = {};
+  for (let i in menus) {
+    if (menus[i].hasOwnProperty('children') && menus[i].children.length > 0) {
+      mapMenus = _.assignIn(mapMenus, createMapOfRoutes(menus[i].children));
+    } else {
+      // TODO sub格式相对固定
+      if (menus[i].hasOwnProperty('link') && menus[i].hasOwnProperty('sub') && menus[i].sub.length > 0) {
+        mapMenus[menus[i].link] = menus[i];
+        if (menus[i].sub.length > 0) {
+          for (let ii in menus[i].sub) {
+            if (menus[i].sub[ii].hasOwnProperty('children') && menus[i].sub[ii].children.length > 0) {
+              // mapMenus = _.assignIn(mapMenus, createMapOfRoutes(menus[i].sub[ii].children));
+              for (let iii in menus[i].sub[ii].children) {
+                mapMenus[menus[i].sub[ii].children[iii].link] = menus[i];
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  return mapMenus;
 };

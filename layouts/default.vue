@@ -72,12 +72,20 @@
 <script>
 import neMenuItem from '~/components/ne-menu-item.vue';
 import fork from '~/components/fork.vue';
+import axios from 'axios';
 const allmenudata = require('~/static/menu.json');
 export default {
   name: 'default-layout',
   components: {
     neMenuItem,
     fork
+  },
+  asyncData() {
+    return axios.get('/menu.json')
+      .then((res) => {
+        console.error(res);
+        return { allmenudata: res };
+      });
   },
   data() {
     return {

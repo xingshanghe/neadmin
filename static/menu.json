@@ -120,7 +120,7 @@
   },
   {
     "icon":"el-icon-setting",
-    "title":"图形操作",
+    "title":"快捷操作",
     "children":[
       {
         "title":"查看帮助",
@@ -135,7 +135,24 @@
   {
     "icon":"el-icon-setting",
     "title":"用户管理",
-    "link":"/users"
+    "link":"/accounts",
+    "sub":[
+      {
+        "icon":"xxx",
+        "isgroup":true,
+        "title":"用户管理",
+        "children":[
+          {
+            "title":"账号管理",
+            "link":"/accounts"
+          },
+          {
+            "title":"访问列表管理",
+            "link":"/accounts/acl"
+          }
+        ]
+      }
+    ]
   },
   {
     "icon":"el-icon-setting",

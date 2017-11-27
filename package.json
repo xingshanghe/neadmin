@@ -23,6 +23,7 @@
     "element-ui": "^2.0.3",
     "js-cookie": "^2.2.0",
     "jwt-decode": "^2.2.0",
+    "lodash": "^4.17.4",
     "normalize.css": "^7.0.0",
     "nuxt": "^1.0.0-rc11",
     "vue": "^2.5.3",
