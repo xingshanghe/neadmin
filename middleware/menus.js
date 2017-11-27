@@ -6,7 +6,7 @@ export default function({ isServer, store, req }) {
     return ;
   }
   // TODO 存储路由 对 菜单状态的选择
-  console.log(createMapOfRoutes(allmenudata));
+  store.commit('SET_MAP_OF_ROUTES', createMapOfRoutes(allmenudata));
 
   const menusCollapse = isServer ? getMenusCollapseFromCookie(req) : getMenusCollapseFromLocalStorage();
   store.commit('SET_MENUS_COLLAPSE', menusCollapse);

@@ -7,7 +7,8 @@ export const state = () => {
   return {
     user: null,
     sidebarCollapse: true,
-    secSidebarCollapse: false
+    secSidebarCollapse: false,
+    mapOfRoutes: null
   };
 };
 
@@ -18,6 +19,9 @@ export const mutations = {
   SET_MENUS_COLLAPSE: function(state, {sidebarCollapse, secSidebarCollapse}) {
     state.sidebarCollapse = sidebarCollapse;
     state.secSidebarCollapse = secSidebarCollapse;
+  },
+  SET_MAP_OF_ROUTES: function(state, mapOfRoutes) {
+    state.mapOfRoutes = mapOfRoutes;
   }
 };
 
@@ -33,6 +37,9 @@ export const getters = {
   },
   user: function(state) {
     return state.user;
+  },
+  mapOfRoutes: function(state) {
+    return state.mapOfRoutes;
   }
 };
 
@@ -41,6 +48,9 @@ export const actions = {
   menusCollapse({commit}, {sidebarCollapse, secSidebarCollapse}) {
     commit('SET_MENUS_COLLAPSE', {sidebarCollapse, secSidebarCollapse});
     setMenusCollapse({sidebarCollapse, secSidebarCollapse});
+  },
+  mapOfRoutes({commit}, mapOfRoutes) {
+    commit('SET_MAP_OF_ROUTES', mapOfRoutes);
   },
   async login({commit}, {username, password, captcha}) {
     try {

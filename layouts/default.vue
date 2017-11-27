@@ -165,6 +165,10 @@ export default {
     }
   },
   mounted() {
+    if (this.$store.state.mapOfRoutes[this.$route.path]) {
+      this.selectedSub(this.$store.state.mapOfRoutes[this.$route.path]);
+      this.defaultSecActive = this.$route.path;// 修正二级子菜单
+    }
   }
 };
 </script>
