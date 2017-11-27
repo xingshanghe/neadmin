@@ -41,13 +41,13 @@
         </el-menu>
       </el-aside>
       <el-aside v-if="menudata.sub" ref="secSidebar" class="secSidebar" :width="secSidebarWidth" >
-        <el-menu :default-active="defaultActive" class="sidebar"   style="height: 100%" :style="secMenuStyle"  @select="handleSelect" :router="true">
+        <el-menu :default-active="defaultSecActive" class="sidebar"   style="height: 100%" :style="secMenuStyle"  @select="handleSelect" :router="true">
           <li class="toggle-sidebar" v-if="menudata.subBackUrl">
             <nuxt-link :to="menudata.subBackUrl" >
               <i class="el-icon-back"></i>
             </nuxt-link>
           </li>
-          <ne-menu-item :items="menudata.sub" :isCollapse="false"></ne-menu-item>  
+          <ne-menu-item :items="menudata.sub" @selected="selectedParent" :isCollapse="false"></ne-menu-item>  
         </el-menu>
         <div class="sec-sidebar-toggle" :class="secSidebarSwitch">
           <div class="sec-sidebar-toggle-inner">
@@ -86,6 +86,7 @@ export default {
       secCollapse: this.$store.state.secSidebarCollapse, // 二级菜单是否折叠
       allmenudata: allmenudata,
       defaultActive: this.$route.path,
+      defaultSecActive: this.$route.path,
       menudata: {
         sub: null,
         subBackUrl: null
@@ -112,22 +113,26 @@ export default {
     }
   },
   methods: {
-    handleSelect(key, keyPath) {
-      console.log(key, keyPath);
+    handleSelect() {
+      // console.log(key, keyPath);
     },
     selectedSub(item) {
       if ((item.hasOwnProperty('sub')) && (item.sub.length > 0)) {
-
         this.menudata.sub = item.sub;
         this.menudata.subBackUrl = item['sub-back-url'];
         // this.menudata.active = item.link;
         this.defaultActive = item.link;
+        this.defaultSecActive = item.link;
         this.toggleSecSidebar(true);// 打开二级菜单
         // TODO 清除当前二级菜单 激活状态
       } else {
         this.menudata.sub = null;
         this.menudata.subBackUrl = null;
       }
+    },
+    selectedParent(item) {
+      // TODO  选出parent处理选中状态
+      this.defaultSecActive = item.link;
     },
     toggleSidebar(isCollapse) {
       // TODO 处理单级菜单

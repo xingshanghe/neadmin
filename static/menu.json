@@ -2,7 +2,7 @@
   {
     "icon":"el-icon-location",
     "title":"管理控制台",
-    "link":"/dashboard"
+    "link":"/"
   },
   {
     "icon":"el-icon-location",

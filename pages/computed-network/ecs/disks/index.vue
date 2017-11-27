@@ -1,10 +1,10 @@
 <template>
-  <div>管理控制台</div>
+  <div>ecs</div>
 </template>
 <script>
 export default {
   head: {
-    title: '管理控制台'
+    title: '磁盘'
   },
   middleware: 'authenticated'
 };
