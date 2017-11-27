@@ -1,5 +1,5 @@
 <template>
-  <div>ecs</div>
+  <div>{{$route.path}}</div>
 </template>
 <script>
 export default {

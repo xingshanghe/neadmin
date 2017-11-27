@@ -116,6 +116,12 @@ export default {
     handleSelect() {
       // console.log(key, keyPath);
     },
+    initSub() {
+      // 初始化二级子菜单
+      this.allmenudata.find(menudata=>{
+        return menudata;
+      });
+    },
     selectedSub(item) {
       if ((item.hasOwnProperty('sub')) && (item.sub.length > 0)) {
         this.menudata.sub = item.sub;

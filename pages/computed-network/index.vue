@@ -1,5 +1,5 @@
 <template>
-  <div>资源概览</div>
+  <div>{{$route.path}}</div>
 </template>
 <script>
 export default {

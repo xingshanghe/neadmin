@@ -1,5 +1,5 @@
 <template>
-  <div>个人资料修改</div>
+  <div>{{$route.path}}</div>
 </template>
 <script>
 export default {

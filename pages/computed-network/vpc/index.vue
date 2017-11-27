@@ -1,5 +1,5 @@
 <template>
-  <div>vpc</div>
+  <div>{{$route.path}}</div>
 </template>
 <script>
 export default {

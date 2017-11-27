@@ -88,7 +88,7 @@
               },
               {
                 "title":"Internet网关",
-                "link":"/computed-network/vpc/internet-nat"
+                "link":"/computed-network/vpc/internet-gateway"
               },
               {
                 "title":"VPN",

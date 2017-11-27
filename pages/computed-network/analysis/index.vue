@@ -1,5 +1,5 @@
 <template>
-  <div>应用分析组管理</div>
+  <div>{{$route.path}}</div>
 </template>
 <script>
 export default {
