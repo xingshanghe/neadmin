@@ -42,3 +42,5 @@ For detailed explanation on how things work, checkout the [Nuxt.js docs](https:/
 ### 0.1.2
 * 升级 element UI
 * 升级 vue
+### 0.1.3
+* 升级 nuxt.js，引入阿里📈控件（g2）,取消服务端渲染。
