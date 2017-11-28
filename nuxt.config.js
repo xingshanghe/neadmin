@@ -18,6 +18,7 @@ module.exports = {
   ** Customize the progress bar color
   */
   loading: { color: '#3B8070' },
+  mode: 'spa',
   /*
   ** Build configuration
   */
@@ -38,7 +39,8 @@ module.exports = {
     publicPath: '/public/',
     vendor: [
       'axios',
-      'element-ui'
+      'element-ui',
+      'viser-vue'
     ],
     extractCSS: true,
     filenames: {
@@ -56,6 +58,7 @@ module.exports = {
     '~/assets/css/icons/icomoon/styles.css'
   ],
   plugins: [
-    '~/plugins/element-ui'
+    '~/plugins/element-ui',
+    { src: '~/plugins/viser-vue', ssr: false }
   ]
 };

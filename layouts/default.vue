@@ -21,7 +21,7 @@
           </el-submenu>
           <el-menu-item index="/accounts/work-order"><nuxt-link to="/accounts/work-order">工单管理</nuxt-link></el-menu-item>
           <el-submenu index="/accounts" menu-trigger="click">
-            <template slot="title"><img src="~/assets/images/img-holder.jpg" style="width:30px;"> {{currentUser.account.username && currentUser.account.profile.nickname}} </template>
+            <template slot="title"><img src="~/assets/images/img-holder.jpg" style="width:30px;"> {{currentUser?currentUser.account.username && currentUser.account.profile.nickname:null}} </template>
             <el-menu-item index="/accounts/profile"><nuxt-link to="/accounts/profile"><i class="icon-cog"></i> 个人设置</nuxt-link></el-menu-item>
             <el-menu-item index="/accounts/logout"><nuxt-link to="/accounts/logout"><i class="icon-switch"></i> 安全退出</nuxt-link></el-menu-item>
           </el-submenu>

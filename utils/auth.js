@@ -5,7 +5,7 @@ import Cookie from 'js-cookie';
 
 // 客户端设置token
 export const setToken = (token) => {
-  if (process.SERVER_BUILD) return;
+  if (process.server) return;
   window.localStorage.setItem(consts.JWT_KEY, token);
   window.localStorage.setItem(consts.USER_KEY, JSON.stringify(jwtDecode(token)));
 
@@ -14,7 +14,7 @@ export const setToken = (token) => {
 
 // 客户端删除token
 export const unsetToken = ()=>{
-  if (process.SERVER_BUILD) return;
+  if (process.server) return;
   window.localStorage.removeItem(consts.JWT_KEY);
   window.localStorage.removeItem(consts.USER_KEY);
 

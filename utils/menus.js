@@ -3,7 +3,7 @@ import Cookie from 'js-cookie';
 import _ from 'lodash';
 // 客户端设置菜单状态
 export const setMenusCollapse = ({sidebarCollapse, secSidebarCollapse}) => {
-  if (process.SERVER_BUILD) return;
+  if (process.server) return;
   window.localStorage.setItem(consts.SIDEBAR_COLLAPSE_KEY, sidebarCollapse);
   window.localStorage.setItem(consts.SEC_SIDEBAR_COLLAPSE_KEY, secSidebarCollapse);
 
@@ -13,7 +13,7 @@ export const setMenusCollapse = ({sidebarCollapse, secSidebarCollapse}) => {
 
 // 客户端删除菜单状态
 export const unsetMenusCollapse = ()=>{
-  if (process.SERVER_BUILD) return;
+  if (process.server) return;
   window.localStorage.removeItem(consts.SIDEBAR_COLLAPSE_KEY);
   window.localStorage.removeItem(consts.SEC_SIDEBAR_COLLAPSE_KEY);
 
