@@ -6,7 +6,7 @@ import {setMenusCollapse} from '~/utils/menus.js';
 export const state = () => {
   return {
     user: null,
-    sidebarCollapse: true,
+    sidebarCollapse: false,
     secSidebarCollapse: false,
     mapOfRoutes: null
   };

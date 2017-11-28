@@ -31,7 +31,7 @@
     </el-header>
     <el-container>
       <el-aside ref="sidebar" :width="sidebarWidth" >
-        <el-menu :default-active="defaultActive" class="sidebar"  :collapse="isCollapse"  style="height: 100%"  :router="true">
+        <el-menu :default-active="defaultActive" class="sidebar" :unique-opened="true"  :collapse="isCollapse"  style="height: 100%"  :router="true">
           <li class="toggle-sidebar">
             <a @click="toggleSidebar(isCollapse)" :class="!isCollapse?'sider-opened':'sider-closed'">
               <i class="icon-paragraph-justify3"></i>
@@ -41,7 +41,7 @@
         </el-menu>
       </el-aside>
       <el-aside v-if="menudata.sub" ref="secSidebar" class="secSidebar" :width="secSidebarWidth" >
-        <el-menu :default-active="defaultSecActive" class="sidebar"   style="height: 100%" :style="secMenuStyle"  @select="handleSelect" :router="true">
+        <el-menu :default-active="defaultSecActive" class="sidebar" :unique-opened="true"  style="height: 100%" :style="secMenuStyle"  @select="handleSelect" :router="true">
           <li class="toggle-sidebar" v-if="menudata.subBackUrl">
             <nuxt-link :to="menudata.subBackUrl" >
               <i class="el-icon-back"></i>

@@ -19,21 +19,23 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "@antv/g2": "^3.0.0",
     "axios": "^0.17.1",
-    "element-ui": "^2.0.3",
+    "element-ui": "^2.0.5",
     "js-cookie": "^2.2.0",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.4",
     "normalize.css": "^7.0.0",
     "nuxt": "^1.0.0-rc11",
-    "vue": "^2.5.3",
-    "vue-server-renderer": "^2.5.3",
-    "vue-template-compiler": "^2.5.3",
-    "vuex-persistedstate": "^2.4.0"
+    "viser-vue": "^1.0.4",
+    "vue": "^2.5.9",
+    "vue-server-renderer": "^2.5.9",
+    "vue-template-compiler": "^2.5.9",
+    "vuex-persistedstate": "^2.4.2"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
-    "eslint": "^4.3.0",
+    "eslint": "^4.12.0",
     "eslint-config-elemefe": "^0.3.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-loader": "^1.9.0",
@@ -42,7 +44,7 @@
     "eslint-plugin-node": "^5.1.1",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6"
   }
 }
