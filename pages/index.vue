@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button v-on:click="handleClick">Click</button>
+    <el-button type="primary" plain size="small" @click="handleClick">点击</el-button>
     <v-chart :force-fit="true" :height="height" :data="data" :data-pre="dataPre" :data-mapping="dataMapping" :scale="scale">
       <v-tooltip />
       <v-axis />

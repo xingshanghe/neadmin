@@ -23,6 +23,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    // ssr: false,
     /*
     ** Run ESLint on save
     */
@@ -49,13 +50,17 @@ module.exports = {
       css: 'ne.[contenthash:12].css'
     }
   },
+  render: {
+    // ssr: false
+  },
   router: {
     middleware: ['check-auth', 'menus']
   },
   css: [
     'normalize.css/normalize.css',
     'element-ui/lib/theme-chalk/index.css',
-    '~/assets/css/icons/icomoon/styles.css'
+    '~/assets/css/icons/icomoon/styles.css',
+    '~/assets/css/icons/iconfont/iconfont.css'
   ],
   plugins: [
     '~/plugins/element-ui',

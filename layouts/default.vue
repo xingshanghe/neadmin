@@ -259,8 +259,12 @@ $nav-height:50px;
         
       }
     }
-    .el-submenu [class^=el-icon-],.el-menu-item [class^=el-icon-]{
-      margin-right:20px;
+    .el-submenu i[class^=el-icon-],.el-menu-item i[class^=el-icon-],.el-submenu i[class^=icon-],.el-menu-item i[class^=icon-]{
+      margin-right:19px;
+      vertical-align: middle;
+      width: 24px;
+      text-align: center;
+      font-size: 18px;
     }
     .el-menu-item, .el-submenu__title{
       height: $nav-height !important;

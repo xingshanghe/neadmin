@@ -1,28 +1,29 @@
 [
   {
-    "icon":"el-icon-location",
+    "icon":"icon-home2",
     "title":"管理控制台",
     "link":"/"
   },
   {
-    "icon":"el-icon-location",
+    "icon":"icon-wangluo4 iconfont",
     "title":"计算与网络",
     "children":[
       {
-        "icon":"xxx",
+        "icon":"icon-googleplus5",
         "title":"资源概览",
         "link":"/computed-network",
         "sub":[
           {
-            "icon":"xxx",
             "isgroup":true,
             "title":"资源概览",
             "children":[
               {
+                "icon":"icon-googleplus5",
                 "title":"概览",
                 "link":"/computed-network"
               },
               {
+                "icon":"icon-statistics",
                 "title":"应用分析组管理",
                 "link":"/computed-network/analysis"
               }
@@ -31,32 +32,36 @@
         ]
       },
       {
-        "icon":"xxx",
+        "icon":"icon-ecs2 iconfont",
         "title":"云服务器ECS",
         "link":"/computed-network/ecs",
         "sub":[
           {
-            "icon":"xxx",
             "isgroup":true,
             "title":"云服务器ECS",
             "children":[
               {
+                "icon":"icon-ecs2 iconfont",
                 "title":"概览",
                 "link":"/computed-network/ecs"
               },
               {
+                "icon":"icon-shililiebiao iconfont",
                 "title":"实例列表",
                 "link":"/computed-network/ecs/list"
               },
               {
+                "icon":"icon-cipan iconfont",
                 "title":"磁盘",
                 "link":"/computed-network/ecs/disks"
               },
               {
+                "icon":"icon-jingxiangcangku iconfont",
                 "title":"快照和镜像",
                 "link":"/computed-network/ecs/snapshot-image"
               },
               {
+                "icon":"icon-anquan iconfont",
                 "title":"网络与安全",
                 "link":"/computed-network/ecs/network-safety"
               }
@@ -65,36 +70,41 @@
         ]
       },
       {
-        "icon":"xxx",
+        "icon":"icon-vpc iconfont",
         "title":"专用网络VPC",
         "link":"/computed-network/vpc",
         "sub":[
           {
-            "icon":"xxx",
             "isgroup":true,
             "title":"专用网络VPC",
             "children":[
               {
+                "icon":"icon-googleplus5",
                 "title":"概览",
                 "link":"/computed-network/vpc"
               },
               {
+                "icon":"icon-vpc iconfont",
                 "title":"专用网络",
                 "link":"/computed-network/vpc/list"
               },
               {
+                "icon":"icon-nat iconfont",
                 "title":"NAT网关",
                 "link":"/computed-network/vpc/nat"
               },
               {
+                "icon":"icon-gateway iconfont",
                 "title":"Internet网关",
                 "link":"/computed-network/vpc/internet-gateway"
               },
               {
+                "icon":"icon-vpn iconfont",
                 "title":"VPN",
                 "link":"/computed-network/vpc/vpn"
               },
               {
+                "icon":"icon-EIPdanxingip iconfont",
                 "title":"弹性公网IP",
                 "link":"/computed-network/vpc/eip"
               }
@@ -105,35 +115,39 @@
     ]
   },
   {
-    "icon":"el-icon-menu",
+    "icon":"icon-display",
     "title":"云桌面",
     "children":[
       {
+        "icon":"icon-display",
         "title":"云桌面",
         "link":"/desktop"
       },
       {
+        "icon":"icon-lifebuoy",
         "title":"桌面支撑服务",
         "link":"/desktop/support"
       }
     ]
   },
   {
-    "icon":"el-icon-setting",
+    "icon":"icon-drag-left-right",
     "title":"快捷操作",
     "children":[
       {
+        "icon":"icon-help",
         "title":"查看帮助",
         "link":"/graph/support"
       },
       {
+        "icon":"icon-drag-left-right",
         "title":"构建网络",
         "link":"/graph"
       }
     ]
   },
   {
-    "icon":"el-icon-setting",
+    "icon":"icon-users4",
     "title":"用户管理",
     "link":"/accounts",
     "sub":[
@@ -143,10 +157,12 @@
         "title":"用户管理",
         "children":[
           {
+            "icon":"icon-vcard",
             "title":"账号管理",
             "link":"/accounts"
           },
           {
+            "icon":" icon-safe",
             "title":"访问列表管理",
             "link":"/accounts/acl"
           }
