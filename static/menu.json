@@ -24,7 +24,7 @@
               },
               {
                 "icon":"icon-statistics",
-                "title":"应用分析组管理",
+                "title":"应用分组管理",
                 "link":"/computed-network/analysis"
               }
             ]
