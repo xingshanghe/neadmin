@@ -61,7 +61,7 @@
           </div>
         </div>
       </el-aside>
-      <el-main><nuxt></nuxt></el-main>
+      <el-main class="main-container"><nuxt></nuxt></el-main>
     </el-container>
   </el-container>
 </nav>
@@ -313,7 +313,26 @@ $nav-height:50px;
   }
 }
 .el-main{
-  
+  .ne-card{
+    .el-card__header{
+      background-color: #f4f5f9;
+      border-left: 3px solid #778;
+      padding: 8px 20px;
+      span{
+        
+      }
+      button.el-button{
+        float: right;
+        padding: 0;
+      }
+    }
+    .el-card__body{
+      min-height: 200px;
+    }
+  }
+}
+.el-main.main-container{
+  overflow-y: auto;
 }
 </style>
 

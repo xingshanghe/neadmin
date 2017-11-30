@@ -61,24 +61,6 @@ export default {
 </script>
 <style rel="stylesheet/scss" lang="scss" >
 
-.ne-cards{
-  .ne-card{
-    .el-card__header{
-      background-color: #f4f5f9;
-      border-left: 3px solid #778;
-      padding: 8px 20px;
-      span{
-        
-      }
-      button.el-button{
-        float: right;
-        padding: 0;
-      }
-    }
-    .el-card__body{
-      min-height: 300px;
-    }
-  }
-}
+
 
 </style>
