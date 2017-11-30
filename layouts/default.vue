@@ -312,5 +312,8 @@ $nav-height:50px;
     right: -15px;
   }
 }
+.el-main{
+  
+}
 </style>
 

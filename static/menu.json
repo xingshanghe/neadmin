@@ -162,7 +162,7 @@
             "link":"/accounts"
           },
           {
-            "icon":" icon-safe",
+            "icon":"icon-safe",
             "title":"访问列表管理",
             "link":"/accounts/acl"
           }

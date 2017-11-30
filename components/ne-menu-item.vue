@@ -1,7 +1,6 @@
 <template>
-  <span>
+  <section>
     <template v-for="(item,key) in items">
-
       <template v-if="item.hasOwnProperty('isgroup') && item.isgroup === true">
         <el-menu-item-group>
           <span slot="title">{{item.title}}</span>
@@ -35,7 +34,7 @@
         </template>
       </template>
     </template>
-  </span>
+  </section>
 </template>
 
 <script>

@@ -24,7 +24,7 @@
       </el-col>
     </el-row>
 
-    <el-row :gutter="20">
+    <el-row :gutter="20" style="margin-top:20px;">
       <el-col :span="12">
         <el-card class="ne-card">
           <div slot="header"  class="clearfix">
@@ -62,9 +62,6 @@ export default {
 <style rel="stylesheet/scss" lang="scss" >
 
 .ne-cards{
-  .el-row{
-    margin-top:20px; 
-  }
   .ne-card{
     .el-card__header{
       background-color: #f4f5f9;

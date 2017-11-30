@@ -2,7 +2,11 @@
 
 > Nuxt + Element Admin System.
 
+服务端地址: https://github.com/xingshanghe/neapi
+
 基于vue.js的服务端渲染框架nuxt.js构建的后台管理系统，实现了以下功能:
+
+
 
 * 会员系统
 * 消息通知
