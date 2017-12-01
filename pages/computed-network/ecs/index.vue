@@ -6,7 +6,7 @@
       </el-col>
     </el-row>
     <el-row class="ecs-overviews-sumary" >
-      <el-col v-for="overview in overviews" :span="6">
+      <el-col v-for="(overview,index) in overviews" :key="index" :span="6">
         <span>{{overview.title}}:</span>
         <el-button type="text">{{overview.value}}</el-button>
       </el-col>
@@ -17,7 +17,7 @@
       </el-col>
     </el-row>
     <el-row class="ecs-overviews" :gutter="20">
-      <el-col :span="12" v-for="resource in resources">
+      <el-col :span="12" v-for="(resource,index) in resources" :key="index">
         <el-card class="ne-card" style="margin-bottom:20px;">
           <div slot="header"  class="clearfix">
             <span v-if="resource.agent && resource.region">{{resource.agent.label}}({{resource.region.label}})</span>
@@ -209,6 +209,8 @@ export default {
   padding: 0 20px;
   border: 1px solid #e1e6eb;
   font-size: 18px;
+  background-color: #FFF;
+  border-radius:4px;
   @include span-button;
 }
 
