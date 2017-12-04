@@ -13,6 +13,18 @@
 </template>
 <script>
 import listTitlePills from '~/components/console/list-title-pills.vue';
+
+// import api from '~/api/index.js';
+// api({metadata: {name: 'xxx'}, spec: {
+//   'EcsList.Get': {
+//     'UrlParams': {
+//       'access_token': 'd92743fa-9b57-487c-811f-7ae9baca4990'
+//     }
+//   }
+// }}).then(data=>{
+//   console.error(data);
+// });
+
 export default {
   head: {
     title: '专有网络'
@@ -20,6 +32,17 @@ export default {
   middleware: 'authenticated',
   components: {
     listTitlePills
+  },
+  mounted() {
+    this.api({metadata: {name: 'tttt'}, spec: {
+      'EcsList.Get': {
+        'UrlParams': {
+          'access_token': 'd92743fa-9b57-487c-811f-7ae9baca4990'
+        }
+      }
+    }}).then(data =>{
+      console.error(data);
+    });
   }
 };
 </script>

@@ -9,6 +9,7 @@ export const setToken = (token) => {
   window.localStorage.setItem(consts.JWT_KEY, token);
   window.localStorage.setItem(consts.USER_KEY, JSON.stringify(jwtDecode(token)));
 
+  Cookie.set(consts.USER_KEY, JSON.stringify(jwtDecode(token)));
   Cookie.set(consts.JWT_KEY, token);
 };
 
