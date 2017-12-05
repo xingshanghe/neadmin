@@ -13,17 +13,8 @@
 </template>
 <script>
 import listTitlePills from '~/components/console/list-title-pills.vue';
-
-// import api from '~/api/index.js';
-// api({metadata: {name: 'xxx'}, spec: {
-//   'EcsList.Get': {
-//     'UrlParams': {
-//       'access_token': 'd92743fa-9b57-487c-811f-7ae9baca4990'
-//     }
-//   }
-// }}).then(data=>{
-//   console.error(data);
-// });
+import consts from '~/utils/consts.js';
+// import api from '~/api';
 
 export default {
   head: {
@@ -33,16 +24,42 @@ export default {
   components: {
     listTitlePills
   },
-  mounted() {
-    this.api({metadata: {name: 'tttt'}, spec: {
-      'EcsList.Get': {
-        'UrlParams': {
-          'access_token': 'd92743fa-9b57-487c-811f-7ae9baca4990'
+  data() {
+    return {
+      tableData: null,
+      query: this.$route.query
+    };
+  },
+  methods: {
+    getEcsList() {
+      return this.api({metadata: {name: 'console.ecs.getlist'}, spec: {
+        'EcsList.Get': {
+          'UrlParams': {
+            'access_token': consts.TOKEN
+          }
         }
-      }
-    }}).then(data =>{
-      console.error(data);
-    });
+      }}).then(res=>{
+        this.tableData = res.data['EcsList.Get'].data;
+      });
+    }
+  },
+  asyncData() {
+    // return api({metadata: {name: 'console.ecs.getlist'}, spec: {
+    //   'EcsList.Get': {
+    //     'UrlParams': {
+    //       'access_token': consts.TOKEN
+    //     }
+    //   }
+    // }}).then(res=>{
+    //   // TODO 后台异常处理能力不足
+    //   return {
+    //     tableData: res.data['EcsList.Get'].data
+    //   };
+    // });
+  },
+  mounted() {
+    this.getEcsList();
+    console.log(this.tableData);
   }
 };
 </script>

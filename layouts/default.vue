@@ -330,6 +330,19 @@ $nav-height:50px;
       min-height: 200px;
     }
   }
+  .console-table-list{
+
+    td, th {
+      height: 30px;
+    }
+    th{
+      color: #000;
+      background-color: #eef1f6;
+      >.cell{
+        line-height: 30px;
+      }
+    }
+  }
 }
 .el-main.main-container{
   overflow-y: auto;

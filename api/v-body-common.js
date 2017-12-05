@@ -1,13 +1,12 @@
-import consts from '~/utils/consts.js';
-import Cookie from 'js-cookie';
+import {getUserFromLocalStorage} from '~/utils/auth.js';
 
 export const vBodyCommon = () => {
-  let user = JSON.parse(Cookie.get(consts.USER_KEY));
+  let user = getUserFromLocalStorage();
   return {
     apiVersion: 'v1',
     kind: 'ServiceOrganize',
     metadata: {
-      owner: user.account.username || null
+      owner: user ? user.account.username : null
     }
   };
 };
