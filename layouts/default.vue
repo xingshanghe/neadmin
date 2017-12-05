@@ -334,14 +334,18 @@ $nav-height:50px;
 
     td, th {
       height: 30px;
+      padding: 0;
     }
-    th{
-      color: #000;
+    th{      
+      color: #1f2d3d;
       background-color: #eef1f6;
       >.cell{
         line-height: 30px;
       }
     }
+  }
+  .pager{
+    float: right;
   }
 }
 .el-main.main-container{

@@ -9,7 +9,7 @@
         <el-button type="primary"  size="small"><i class="el-icon-plus "></i>新增</el-button>
       </el-col>
     </el-row>
-    <el-row>
+    <el-row style="margin-top:10px;">
       <el-col>
         <!-- 列表 -->
           <el-table :data="tableData.content"  border class="console-table-list" >
@@ -19,7 +19,7 @@
               </template>
             </el-table-column>
             <el-table-column prop="privateIpaddress" label="IP地址" ></el-table-column>
-            <el-table-column label="状态" width="60">
+            <el-table-column label="状态" >
               <template slot-scope="scope"> 
                 <span :class="'status-' + scope.row.status">{{scope.row.status|toStatusText}}</span>
               </template>
@@ -29,13 +29,18 @@
             <el-table-column prop="createTime" label="创建时间"></el-table-column>
             <el-table-column label="操作">
               <template slot-scope="scope">
-                <el-button type="text" @click="start(scope.row)" ><i title="启动" class="glyphicon glyphicon-play"></i></el-button>
-                <el-button type="text" @click="stop(scope.row)"><i title="关机" class="glyphicon glyphicon-off"></i></el-button>
-                <el-button type="text" @click="reboot(scope.row)"><i title="重启" class="glyphicon glyphicon-repeat"></i></el-button>
-                <el-button type="text" @click="del(scope.row)"><i class="glyphicon glyphicon-remove" title="删除"></i></el-button>
+                <el-button type="text" @click="start(scope.row)" ><i title="启动" class="icon-play4"></i></el-button>
+                <el-button type="text" @click="stop(scope.row)"><i title="关机" class="icon-switch2"></i></el-button>
+                <el-button type="text" @click="reboot(scope.row)"><i title="重启" class="icon-spinner11"></i></el-button>
+                <el-button type="text" @click="del(scope.row)"><i class="icon-cross2" title="删除"></i></el-button>
               </template>
             </el-table-column>
           </el-table>
+      </el-col>
+    </el-row>
+    <el-row style="margin-top:10px;" class="pager">
+      <el-col>
+        <el-pagination layout="total, prev, pager, next" :total="tableData.totalElements" :current-page.sync="query.page" :page-size="tableData.size" @current-change="getEcsList"></el-pagination>
       </el-col>
     </el-row>
   </section>
@@ -64,7 +69,8 @@ export default {
       return this.api({metadata: {name: 'console.ecs.getlist'}, spec: {
         'EcsList.Get': {
           'UrlParams': {
-            'access_token': consts.TOKEN
+            'access_token': consts.TOKEN,
+            'page': this.query.page ? this.query.page - 1 : 1 - 1
           }
         }
       }}).then(res=>{

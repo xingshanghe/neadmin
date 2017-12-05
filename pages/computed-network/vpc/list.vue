@@ -9,6 +9,37 @@
         <el-button type="primary"  size="small"><i class="el-icon-plus "></i>新增</el-button>
       </el-col>
     </el-row>
+    <el-row style="margin-top:10px;">
+      <el-col>
+        <!-- 列表 -->
+          <el-table :data="tableData.content"  border  class="console-table-list">
+            <el-table-column label="名称">
+              <template slot-scope="scope">
+                <nuxt-link class="el-button el-button--text" :to="'/computed-network/vpc/' + scope.row.vpcId"  :title="scope.description">{{scope.row.vpcName}}</nuxt-link>
+              </template>
+            </el-table-column>
+            <el-table-column prop="regionId" label="区位"></el-table-column>
+            <el-table-column prop="cidrBlock" label="网段" ></el-table-column>
+            <el-table-column label="状态" >
+              <template slot-scope="scope"> 
+                <span :class="'status-' + scope.row.status">{{scope.row.status|toStatusText}}</span>
+              </template>
+            </el-table-column>
+            <el-table-column prop="platformId" label="默认网络" ></el-table-column>
+            <el-table-column prop="createTime" label="创建时间"></el-table-column>
+            <el-table-column label="操作" >
+              <template slot-scope="scope">
+                <el-button type="text" @click="del(scope.$index)"><i class="icon-cross2" title="删除"></i></el-button>
+              </template>
+            </el-table-column>
+          </el-table>
+      </el-col>
+    </el-row>
+    <el-row style="margin-top:10px;" class="pager">
+      <el-col>
+        <el-pagination layout="total, prev, pager, next" :total="tableData.totalElements" :current-page.sync="query.page" :page-size="tableData.size" @current-change="getVpcList"></el-pagination>
+      </el-col>
+    </el-row>
   </section>
 </template>
 <script>
@@ -18,7 +49,7 @@ import consts from '~/utils/consts.js';
 
 export default {
   head: {
-    title: '专有网络'
+    title: '专用网络'
   },
   middleware: 'authenticated',
   components: {
@@ -26,26 +57,27 @@ export default {
   },
   data() {
     return {
-      tableData: null,
+      tableData: {},
       query: this.$route.query
     };
   },
   methods: {
-    getEcsList() {
-      return this.api({metadata: {name: 'console.ecs.getlist'}, spec: {
-        'EcsList.Get': {
+    getVpcList() {
+      return this.api({metadata: {name: 'console.vpc.getlist'}, spec: {
+        'VpcList.Get': {
           'UrlParams': {
-            'access_token': consts.TOKEN
+            'access_token': consts.TOKEN,
+            'page': this.query.page ? this.query.page - 1 : 1 - 1
           }
         }
       }}).then(res=>{
-        this.tableData = res.data['EcsList.Get'].data;
+        this.tableData = res.data['VpcList.Get'].data;
       });
     }
   },
   asyncData() {
-    // return api({metadata: {name: 'console.ecs.getlist'}, spec: {
-    //   'EcsList.Get': {
+    // return api({metadata: {name: 'console.vpc.getlist'}, spec: {
+    //   'VpcList.Get': {
     //     'UrlParams': {
     //       'access_token': consts.TOKEN
     //     }
@@ -53,13 +85,12 @@ export default {
     // }}).then(res=>{
     //   // TODO 后台异常处理能力不足
     //   return {
-    //     tableData: res.data['EcsList.Get'].data
+    //     tableData: res.data['VpcList.Get'].data
     //   };
     // });
   },
   mounted() {
-    this.getEcsList();
-    console.log(this.tableData);
+    this.getVpcList();
   }
 };
 </script>
