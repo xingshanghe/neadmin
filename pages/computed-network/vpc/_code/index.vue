@@ -93,9 +93,11 @@ export default {
       });
     }
   },
+  created() {
+    this.getVpcInfo();
+  },
   mounted() {
     this.changeMenu();
-    this.getVpcInfo();
   }
 };
 </script>

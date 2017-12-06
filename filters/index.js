@@ -113,6 +113,9 @@ export function toStatusText(status) {
 }
 // 截取固定长度字符串
 export function subString(str, len) {
+  if (!str) {
+    return;
+  }
   var strlen = 0;
   var s = '';
   for (var i = 0; i < str.length; i++) {

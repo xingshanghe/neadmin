@@ -329,7 +329,7 @@ $nav-height:50px;
       }
     }
     .el-card__body{
-      min-height: 200px;
+      // min-height: 200px;
     }
   }
   .console-table-list{

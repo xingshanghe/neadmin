@@ -12,7 +12,7 @@
     <el-row style="margin-top:10px;">
       <el-col>
         <!-- 列表 -->
-          <el-table :data="tableData.hasOwnProperty('content')?tableData.content:[]"  border class="console-table-list" >
+          <el-table :data="tableData?tableData.content:[]"  border class="console-table-list" >
             <el-table-column label="名称">
               <template slot-scope="scope">
                 <nuxt-link class="el-button el-button--text" :to="'/computed-network/ecs/' + scope.row.instanceId"  :title="scope.description">{{scope.row.instanceName}}</nuxt-link>
@@ -38,7 +38,7 @@
           </el-table>
       </el-col>
     </el-row>
-    <el-row style="margin-top:10px;" class="pager" >
+    <el-row v-if="tableData" style="margin-top:10px;" class="pager" >
       <el-col>
         <el-pagination layout="total, prev, pager, next" :total="tableData.totalElements" :current-page.sync="query.page" :page-size="tableData.size" @current-change="getEcsList"></el-pagination>
       </el-col>
@@ -60,7 +60,7 @@ export default {
   },
   data() {
     return {
-      tableData: {},
+      tableData: null,
       query: this.$route.query
     };
   },
