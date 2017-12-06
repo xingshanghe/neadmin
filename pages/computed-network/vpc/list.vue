@@ -12,7 +12,7 @@
     <el-row style="margin-top:10px;">
       <el-col>
         <!-- 列表 -->
-          <el-table :data="tableData.content"  border  class="console-table-list">
+          <el-table :data="tableData.hasOwnProperty('content')?tableData.content:[]"  border  class="console-table-list">
             <el-table-column label="名称">
               <template slot-scope="scope">
                 <nuxt-link class="el-button el-button--text" :to="'/computed-network/vpc/' + scope.row.vpcId"  :title="scope.description">{{scope.row.vpcName}}</nuxt-link>
@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     getVpcList() {
-      return this.api({metadata: {name: 'console.vpc.getlist'}, spec: {
+      return this.$api({metadata: {name: 'console.vpc.getlist'}, spec: {
         'VpcList.Get': {
           'UrlParams': {
             'access_token': consts.TOKEN,

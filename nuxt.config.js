@@ -65,7 +65,8 @@ module.exports = {
   plugins: [
     '~/plugins/element-ui',
     { src: '~plugins/filters.js', ssr: false },
-    {src: '~/plugins/api', ssr: false },
+    { src: '~/plugins/api', ssr: false },
+    { src: '~/plugins/eventHub', ssr: false},
     { src: '~/plugins/viser-vue', ssr: false }
   ]
 };

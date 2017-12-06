@@ -42,7 +42,7 @@
       </el-aside>
       <el-aside v-if="menudata.sub" ref="secSidebar" class="secSidebar" :width="secSidebarWidth" >
         <el-menu :default-active="defaultSecActive" class="sidebar" :unique-opened="true"  style="height: 100%" :style="secMenuStyle"  @select="handleSelect" :router="true">
-          <li class="toggle-sidebar" v-if="menudata.subBackUrl">
+          <li class="toggle-sidebar" v-if="menudata.subBackUrl" @click="selectedSub(menudata.subBackItem)">
             <nuxt-link :to="menudata.subBackUrl" >
               <i class="el-icon-back"></i>
             </nuxt-link>
@@ -61,7 +61,7 @@
           </div>
         </div>
       </el-aside>
-      <el-main class="main-container"><nuxt></nuxt></el-main>
+      <el-main class="main-container"><nuxt ></nuxt></el-main>
     </el-container>
   </el-container>
 </nav>
@@ -72,20 +72,12 @@
 <script>
 import neMenuItem from '~/components/ne-menu-item.vue';
 import fork from '~/components/fork.vue';
-import axios from 'axios';
 const allmenudata = require('~/static/menu.json');
 export default {
   name: 'default-layout',
   components: {
     neMenuItem,
     fork
-  },
-  asyncData() {
-    return axios.get('/menu.json')
-      .then((res) => {
-        console.error(res);
-        return { allmenudata: res };
-      });
   },
   data() {
     return {
@@ -121,6 +113,10 @@ export default {
     }
   },
   methods: {
+    changeMenu(menu) {
+      // this.menudata = menu;
+      this.selectedSub(menu);
+    },
     handleSelect() {
       // console.log(key, keyPath);
     },
@@ -132,11 +128,12 @@ export default {
     },
     selectedSub(item) {
       if ((item.hasOwnProperty('sub')) && (item.sub.length > 0)) {
-        this.menudata.sub = item.sub;
-        this.menudata.subBackUrl = item['sub-back-url'];
+        // this.menudata.sub = item.sub;
+        // this.menudata.subBackUrl = item.subBackUrl;
+        this.menudata = item;
         // this.menudata.active = item.link;
         this.defaultActive = item.link;
-        this.defaultSecActive = item.link;
+        this.defaultSecActive = item.subBackUrl ? item.subBackUrl : item.link;
         this.toggleSecSidebar(true);// 打开二级菜单
         // TODO 清除当前二级菜单 激活状态
       } else {
@@ -163,6 +160,9 @@ export default {
       const secSidebarCollapse = this.secCollapse;
       this.$store.dispatch('menusCollapse', {sidebarCollapse, secSidebarCollapse});
     }
+  },
+  created() {
+    this.$eventHub.$on('changeMenu', this.changeMenu);
   },
   mounted() {
     if (this.$store.state.mapOfRoutes[this.$route.path]) {

@@ -12,7 +12,7 @@
     <el-row style="margin-top:10px;">
       <el-col>
         <!-- 列表 -->
-          <el-table :data="tableData.content"  border class="console-table-list" >
+          <el-table :data="tableData.hasOwnProperty('content')?tableData.content:[]"  border class="console-table-list" >
             <el-table-column label="名称">
               <template slot-scope="scope">
                 <nuxt-link class="el-button el-button--text" :to="'/computed-network/ecs/' + scope.row.instanceId"  :title="scope.description">{{scope.row.instanceName}}</nuxt-link>
@@ -38,7 +38,7 @@
           </el-table>
       </el-col>
     </el-row>
-    <el-row style="margin-top:10px;" class="pager">
+    <el-row style="margin-top:10px;" class="pager" >
       <el-col>
         <el-pagination layout="total, prev, pager, next" :total="tableData.totalElements" :current-page.sync="query.page" :page-size="tableData.size" @current-change="getEcsList"></el-pagination>
       </el-col>
@@ -66,7 +66,7 @@ export default {
   },
   methods: {
     getEcsList() {
-      return this.api({metadata: {name: 'console.ecs.getlist'}, spec: {
+      return this.$api({metadata: {name: 'console.ecs.getlist'}, spec: {
         'EcsList.Get': {
           'UrlParams': {
             'access_token': consts.TOKEN,
@@ -74,6 +74,7 @@ export default {
           }
         }
       }}).then(res=>{
+        console.error(res);
         this.tableData = res.data['EcsList.Get'].data;
       });
     }
