@@ -20,11 +20,9 @@ export function parseTime(time, cFormat) {
   if (arguments.length === 0) {
     return null;
   }
-
   if ((time + '').length === 10) {
     time = +time * 1000;
   }
-
   const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}';
   let date;
   if (typeof time === 'object') {
@@ -112,4 +110,21 @@ export function toStatusText(status) {
     'Custom': '自定义'
   };
   return statusTextArr[status] !== undefined ? statusTextArr[status] : status;
+}
+// 截取固定长度字符串
+export function subString(str, len) {
+  var strlen = 0;
+  var s = '';
+  for (var i = 0; i < str.length; i++) {
+    if (str.charCodeAt(i) > 128) {
+      strlen += 2;
+    } else {
+      strlen++;
+    }
+    s += str.charAt(i);
+    if (strlen >= len) {
+      return s + '...';
+    }
+  }
+  return s;
 }

@@ -127,10 +127,12 @@ export default {
       });
     },
     selectedSub(item) {
-      if ((item.hasOwnProperty('sub')) && (item.sub.length > 0)) {
-        // this.menudata.sub = item.sub;
-        // this.menudata.subBackUrl = item.subBackUrl;
-        this.menudata = item;
+      if ((item.hasOwnProperty('sub'))) {
+        this.menudata.sub = item.sub;
+        this.menudata.subBackUrl = item.subBackUrl;
+        this.menudata.subBackItem = item.subBackItem;
+        // 浅拷贝报错
+        // this.menudata = item;
         // this.menudata.active = item.link;
         this.defaultActive = item.link;
         this.defaultSecActive = item.subBackUrl ? item.subBackUrl : item.link;

@@ -9,5 +9,5 @@ export default Object.freeze({
   SIDEBAR_COLLAPSE_KEY: 'sidbar_collapse',
   SEC_SIDEBAR_COLLAPSE_KEY: 'sec_sidbar_collapse',
   CMOP_API_URL: 'http://neadmin.com/service_organize',
-  TOKEN: 'da909684-f92a-4750-8bb3-b7e3fc946d9e'
+  TOKEN: 'fefcfd29-0417-4162-a2c6-722d6e4b9fd9'
 });

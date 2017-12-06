@@ -45,18 +45,19 @@ export const createMapOfRoutes = (menus) => {
       mapMenus = _.assignIn(mapMenus, createMapOfRoutes(menus[i].children));
     } else {
       // TODO sub格式相对固定
-      if (menus[i].hasOwnProperty('link') && menus[i].hasOwnProperty('sub') && menus[i].sub.length > 0) {
+      // console.error(menus[i].sub);
+      if (menus[i].hasOwnProperty('link') && menus[i].hasOwnProperty('sub')) {
         mapMenus[menus[i].link] = menus[i];
-        if (menus[i].sub.length > 0) {
-          for (let ii in menus[i].sub) {
-            if (menus[i].sub[ii].hasOwnProperty('children') && menus[i].sub[ii].children.length > 0) {
-              // mapMenus = _.assignIn(mapMenus, createMapOfRoutes(menus[i].sub[ii].children));
-              for (let iii in menus[i].sub[ii].children) {
-                mapMenus[menus[i].sub[ii].children[iii].link] = menus[i];
-              }
+        // if (menus[i].sub.length > 0) {
+        for (let ii in menus[i].sub) {
+          if (menus[i].sub[ii].hasOwnProperty('children') && menus[i].sub[ii].children.length > 0) {
+            // mapMenus = _.assignIn(mapMenus, createMapOfRoutes(menus[i].sub[ii].children));
+            for (let iii in menus[i].sub[ii].children) {
+              mapMenus[menus[i].sub[ii].children[iii].link] = menus[i];
             }
           }
         }
+        // }
       }
     }
   }
