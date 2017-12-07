@@ -27,7 +27,6 @@
           </el-submenu>
         </el-menu>
       </div>
-      <fork></fork>
     </el-header>
     <el-container>
       <el-aside ref="sidebar" :width="sidebarWidth" >
