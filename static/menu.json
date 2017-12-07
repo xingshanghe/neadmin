@@ -111,6 +111,34 @@
             ]
           }
         ]
+      },
+      {
+        "icon":"icon-fuzaijunheng iconfont",
+        "title":"负载均衡",
+        "link":"/computed-network/slb",
+        "sub":[
+          {
+            "isgroup":true,
+            "title":"负载均衡",
+            "children":[
+              {
+                "icon":"icon-googleplus5",
+                "title":"概览",
+                "link":"/computed-network/slb"
+              },
+              {
+                "icon":"icon-zhengshu iconfont",
+                "title":"证书管理",
+                "link":"/computed-network/slb/cers"
+              },
+              {
+                "icon":"icon-rizhi iconfont",
+                "title":"操作日志",
+                "link":"/computed-network/slb/logs"
+              }
+            ]
+          }
+        ]
       }
     ]
   },

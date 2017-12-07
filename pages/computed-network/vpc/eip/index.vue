@@ -41,7 +41,7 @@
     </el-row>
     <el-row v-if="tableData" style="margin-top:10px;" class="pager">
       <el-col>
-        <el-pagination layout="total, prev, pager, next" :total="tableData.totalElements" :current-page.sync="query.page" :page-size="tableData.size" @current-change="getVpcList"></el-pagination>
+        <el-pagination layout="total, prev, pager, next" :total="tableData.totalElements" :current-page.sync="query.page" :page-size="tableData.size" @current-change="getEipList"></el-pagination>
       </el-col>
     </el-row>
   </section>

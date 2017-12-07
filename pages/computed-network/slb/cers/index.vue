@@ -12,24 +12,36 @@
     <el-row style="margin-top:10px;">
       <el-col>
         <!-- 列表 -->
-          <el-table :data="tableData?tableData.content:[]"  border  class="console-table-list">
+          <el-table :data="tableData?tableData.content:[]"  border class="console-table-list">
             <el-table-column label="名称">
               <template slot-scope="scope">
-                <el-tooltip effect="dark" :content="scope.row.vpcName" placement="right">
-                  <nuxt-link class="el-button el-button--text" :to="'/computed-network/vpc/' + scope.row.vpcId"  >{{scope.row.vpcName,10|subString}}</nuxt-link>
+                <el-tooltip class="item" effect="dark" :content="scope.row.caCertificateName" placement="right">
+                  <nuxt-link class="el-button el-button--text" :to="'/computed-network/slb/' + scope.row.caCertificateId+'/listenner'"  >{{scope.row.caCertificateName,10|subString}}</nuxt-link>
                 </el-tooltip>
               </template>
             </el-table-column>
-            <el-table-column prop="regionId" label="区位"></el-table-column>
-            <el-table-column prop="cidrBlock" label="网段" ></el-table-column>
+            <el-table-column  label="证书ID" >
+              <template slot-scope="scope">
+                <el-tooltip class="item" effect="dark" :content="scope.row.caCertificateId" placement="right">
+                  <nuxt-link class="el-button el-button--text" :to="'/computed-network/slb/' + scope.row.caCertificateId+'/listenner'" >{{scope.row.caCertificateId,10|subString}}</nuxt-link>
+                </el-tooltip>
+              </template>
+            </el-table-column>
+            <el-table-column prop="caCertificateUUID" label="证书指纹" >
+              <template slot-scope="scope">
+                <el-tooltip class="item" effect="dark" :content="scope.row.fingerprint" placement="right">
+                  <span>{{scope.row.fingerprint,10|subString}}</span>
+                </el-tooltip>
+              </template>
+            </el-table-column>
+            <el-table-column prop="regionId" label="地域"></el-table-column>
             <el-table-column label="状态" >
               <template slot-scope="scope"> 
                 <span :class="'status-' + scope.row.status">{{scope.row.status|toStatusText}}</span>
               </template>
             </el-table-column>
-            <el-table-column prop="platformId" label="默认网络" ></el-table-column>
-            <el-table-column prop="createTime" label="创建时间"></el-table-column>
-            <el-table-column label="操作" >
+            <el-table-column prop="loadBalancerSpec" label="证书类型"></el-table-column>
+            <el-table-column label="操作">
               <template slot-scope="scope">
                 <el-button type="text" @click="del(scope.$index)"><i class="icon-cross2" title="删除"></i></el-button>
               </template>
@@ -39,7 +51,7 @@
     </el-row>
     <el-row v-if="tableData" style="margin-top:10px;" class="pager">
       <el-col>
-        <el-pagination layout="total, prev, pager, next" :total="tableData.totalElements" :current-page.sync="query.page" :page-size="tableData.size" @current-change="getVpcList"></el-pagination>
+        <el-pagination layout="total, prev, pager, next" :total="tableData.totalElements" :current-page.sync="query.page" :page-size="tableData.size" @current-change="getSlbList"></el-pagination>
       </el-col>
     </el-row>
   </section>
@@ -51,7 +63,7 @@ import consts from '~/utils/consts.js';
 
 export default {
   head: {
-    title: '专用网络'
+    title: '证书管理'
   },
   middleware: 'authenticated',
   components: {
@@ -64,16 +76,16 @@ export default {
     };
   },
   methods: {
-    getVpcList() {
-      return this.$api({metadata: {name: 'console.vpc.getlist'}, spec: {
-        'VpcList.Get': {
+    getSlbList() {
+      return this.$api({metadata: {name: 'console.slb.getlist'}, spec: {
+        'SLBCACertList.Get': {
           'UrlParams': {
             'access_token': consts.TOKEN,
             'page': this.query.page ? this.query.page - 1 : 1 - 1
           }
         }
       }}).then(res=>{
-        this.tableData = res.data['VpcList.Get'].data;
+        this.tableData = res.data['SLBCACertList.Get'].data;
       });
     }
   },
@@ -91,8 +103,11 @@ export default {
     //   };
     // });
   },
+  created() {
+    this.getSlbList();
+  },
   mounted() {
-    this.getVpcList();
+
   }
 };
 </script>

@@ -32,7 +32,7 @@
     </el-row>
     <el-row style="margin-top:10px;" class="pager" v-if="tableData">
       <el-col>
-        <el-pagination layout="total, prev, pager, next" :total="tableData.totalElements" :current-page.sync="query.page" :page-size="tableData.size" @current-change="getVswitcherList"></el-pagination>
+        <el-pagination layout="total, prev, pager, next" :total="tableData.totalElements" :current-page.sync="query.page" :page-size="tableData.size" @current-change="getDiskListAndEcsData"></el-pagination>
       </el-col>
     </el-row>
   </section>
@@ -104,7 +104,8 @@ export default {
         'DiskList.Get': {
           'UrlParams': {
             'access_token': consts.TOKEN,
-            'search_EQ_vpcId': this.code
+            'search_EQ_resourceId': this.code,
+            'page': this.query.page ? this.query.page - 1 : 1 - 1
           }
         },
         'Ecs.Get': {

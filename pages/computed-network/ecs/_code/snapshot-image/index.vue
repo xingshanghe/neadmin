@@ -23,7 +23,11 @@
           <el-table-column label="磁盘容量" ></el-table-column>
           <el-table-column label="磁盘属性" ></el-table-column>
           <el-table-column label="进度" ></el-table-column>
-          <el-table-column prop="status" label="状态" ></el-table-column>
+          <el-table-column label="状态" >
+            <template slot-scope="scope"> 
+              <span :class="'status-' + scope.row.status">{{scope.row.status|toStatusText}}</span>
+            </template>
+          </el-table-column>
           <el-table-column label="操作">
             <template slot-scope="scope">
               <el-button type="text" ><i class="icon-rotate-ccw3" title="删除"></i>回滚</el-button>
@@ -34,7 +38,7 @@
     </el-row>
     <el-row style="margin-top:10px;" class="pager" v-if="tableData">
       <el-col>
-        <el-pagination layout="total, prev, pager, next" :total="tableData.totalElements" :current-page.sync="query.page" :page-size="tableData.size" @current-change="getVswitcherList"></el-pagination>
+        <el-pagination layout="total, prev, pager, next" :total="tableData.totalElements" :current-page.sync="query.page" :page-size="tableData.size" @current-change="getSnapShotAndEcsData"></el-pagination>
       </el-col>
     </el-row>
   </section>
@@ -101,12 +105,13 @@ export default {
 
       this.$eventHub.$emit('changeMenu', menudataCopy);
     },
-    getDiskListAndEcsData() {
-      return this.$api({metadata: {name: 'console.disk.ecs.getlist'}, spec: {
-        'DiskList.Get': {
+    getSnapShotAndEcsData() {
+      return this.$api({metadata: {name: 'console.snapshot.ecs.getlist'}, spec: {
+        'SnapshotList.Get': {
           'UrlParams': {
             'access_token': consts.TOKEN,
-            'search_EQ_vpcId': this.code
+            'search_EQ_instanceId': this.code,
+            'page': this.query.page ? this.query.page - 1 : 1 - 1
           }
         },
         'Ecs.Get': {
@@ -118,13 +123,13 @@ export default {
           }
         }
       }}).then(res=>{
-        this.tableData = res.data['DiskList.Get'].data;
+        this.tableData = res.data['SnapshotList.Get'].data;
         this.ecsData = res.data['Ecs.Get'].data;
       });
     }
   },
   created() {
-    // this.getDiskListAndEcsData();
+    this.getSnapShotAndEcsData();
   },
   mounted() {
     this.changeMenu();

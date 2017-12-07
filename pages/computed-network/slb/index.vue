@@ -12,24 +12,25 @@
     <el-row style="margin-top:10px;">
       <el-col>
         <!-- 列表 -->
-          <el-table :data="tableData?tableData.content:[]"  border  class="console-table-list">
+          <el-table :data="tableData?tableData.content:[]"  border class="console-table-list">
             <el-table-column label="名称">
               <template slot-scope="scope">
-                <el-tooltip effect="dark" :content="scope.row.vpcName" placement="right">
-                  <nuxt-link class="el-button el-button--text" :to="'/computed-network/vpc/' + scope.row.vpcId"  >{{scope.row.vpcName,10|subString}}</nuxt-link>
+                <el-tooltip class="item" effect="dark" :content="scope.row.loadBalancerName" placement="right">
+                  <nuxt-link class="el-button el-button--text" :to="'/computed-network/slb/' + scope.row.loadBalancerId+'/listenner'"  :title="scope.description">{{scope.row.loadBalancerName,10|subString}}</nuxt-link>
                 </el-tooltip>
               </template>
             </el-table-column>
             <el-table-column prop="regionId" label="区位"></el-table-column>
-            <el-table-column prop="cidrBlock" label="网段" ></el-table-column>
+            <el-table-column prop="address" label="服务地址" ></el-table-column>
             <el-table-column label="状态" >
               <template slot-scope="scope"> 
                 <span :class="'status-' + scope.row.status">{{scope.row.status|toStatusText}}</span>
               </template>
             </el-table-column>
-            <el-table-column prop="platformId" label="默认网络" ></el-table-column>
-            <el-table-column prop="createTime" label="创建时间"></el-table-column>
-            <el-table-column label="操作" >
+            <el-table-column prop="" label="健康检查" ></el-table-column>
+            <el-table-column prop="" label="后端服务器" ></el-table-column>
+            <el-table-column prop="loadBalancerSpec" label="规格"></el-table-column>
+            <el-table-column label="操作">
               <template slot-scope="scope">
                 <el-button type="text" @click="del(scope.$index)"><i class="icon-cross2" title="删除"></i></el-button>
               </template>
@@ -39,7 +40,7 @@
     </el-row>
     <el-row v-if="tableData" style="margin-top:10px;" class="pager">
       <el-col>
-        <el-pagination layout="total, prev, pager, next" :total="tableData.totalElements" :current-page.sync="query.page" :page-size="tableData.size" @current-change="getVpcList"></el-pagination>
+        <el-pagination layout="total, prev, pager, next" :total="tableData.totalElements" :current-page.sync="query.page" :page-size="tableData.size" @current-change="getSlbList"></el-pagination>
       </el-col>
     </el-row>
   </section>
@@ -51,7 +52,7 @@ import consts from '~/utils/consts.js';
 
 export default {
   head: {
-    title: '专用网络'
+    title: '负载均衡'
   },
   middleware: 'authenticated',
   components: {
@@ -64,16 +65,16 @@ export default {
     };
   },
   methods: {
-    getVpcList() {
-      return this.$api({metadata: {name: 'console.vpc.getlist'}, spec: {
-        'VpcList.Get': {
+    getSlbList() {
+      return this.$api({metadata: {name: 'console.slb.getlist'}, spec: {
+        'SLBList.Get': {
           'UrlParams': {
             'access_token': consts.TOKEN,
             'page': this.query.page ? this.query.page - 1 : 1 - 1
           }
         }
       }}).then(res=>{
-        this.tableData = res.data['VpcList.Get'].data;
+        this.tableData = res.data['SLBList.Get'].data;
       });
     }
   },
@@ -91,8 +92,11 @@ export default {
     //   };
     // });
   },
+  created() {
+    this.getSlbList();
+  },
   mounted() {
-    this.getVpcList();
+
   }
 };
 </script>

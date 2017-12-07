@@ -29,7 +29,7 @@
             </el-table-column>
             <el-table-column prop="createTime" label="创建时间"></el-table-column>
             <el-table-column label="操作">
-              <template scope="scope">
+              <template slot-scope="scope">
                 <el-button type="text" @click="del(scope.$index)">删除</el-button>
               </template>
             </el-table-column>
@@ -38,7 +38,7 @@
     </el-row>
     <el-row v-if="tableData" style="margin-top:10px;" class="pager">
       <el-col>
-        <el-pagination layout="total, prev, pager, next" :total="tableData.totalElements" :current-page.sync="query.page" :page-size="tableData.size" @current-change="getVpcList"></el-pagination>
+        <el-pagination layout="total, prev, pager, next" :total="tableData.totalElements" :current-page.sync="query.page" :page-size="tableData.size" @current-change="getNatList"></el-pagination>
       </el-col>
     </el-row>
   </section>

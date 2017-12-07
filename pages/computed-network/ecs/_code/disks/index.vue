@@ -20,7 +20,11 @@
             </template>
           </el-table-column>
           <el-table-column prop="diskCategory" label="类型" ></el-table-column>
-          <el-table-column prop="status" label="状态" ></el-table-column>
+          <el-table-column label="状态" >
+            <template slot-scope="scope"> 
+              <span :class="'status-' + scope.row.status">{{scope.row.status|toStatusText}}</span>
+            </template>
+          </el-table-column>
           <el-table-column prop="zoneUUID" label="可用区" ></el-table-column>
           <el-table-column prop="diskType" label="属性" ></el-table-column>
           <el-table-column prop="createTime" label="创建时间"></el-table-column>
@@ -35,7 +39,7 @@
     </el-row>
     <el-row style="margin-top:10px;" class="pager" v-if="tableData">
       <el-col>
-        <el-pagination layout="total, prev, pager, next" :total="tableData.totalElements" :current-page.sync="query.page" :page-size="tableData.size" @current-change="getVswitcherList"></el-pagination>
+        <el-pagination layout="total, prev, pager, next" :total="tableData.totalElements" :current-page.sync="query.page" :page-size="tableData.size" @current-change="getDiskListAndEcsData"></el-pagination>
       </el-col>
     </el-row>
   </section>
@@ -107,7 +111,8 @@ export default {
         'DiskList.Get': {
           'UrlParams': {
             'access_token': consts.TOKEN,
-            'search_EQ_vpcId': this.code
+            'search_EQ_instanceId': this.code,
+            'page': this.query.page ? this.query.page - 1 : 1 - 1
           }
         },
         'Ecs.Get': {

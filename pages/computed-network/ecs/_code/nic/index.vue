@@ -44,7 +44,7 @@ import _ from 'lodash';
 import neMainTitle from '~/components/ne-main-title.vue';
 import consts from '~/utils/consts.js';
 export default {
-  name: 'get-disk-from-ecs-code',
+  name: 'get-nic-from-ecs-code',
   head: {
     title: '网卡'
   },
@@ -106,7 +106,8 @@ export default {
         'DiskList.Get': {
           'UrlParams': {
             'access_token': consts.TOKEN,
-            'search_EQ_vpcId': this.code
+            'search_EQ_resourceId': this.code,
+            'page': this.query.page ? this.query.page - 1 : 1 - 1
           }
         },
         'Ecs.Get': {
