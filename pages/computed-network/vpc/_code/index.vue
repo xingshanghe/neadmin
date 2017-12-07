@@ -4,7 +4,7 @@
       <el-col :span="16">
         <neMainTitle :title="'专用网络VPC详情'"/>
       </el-col>
-      <el-col class="top-buttons-list" :span="8">
+      <el-col class="top-buttons" :span="8">
         <el-button type="primary"  size="small"><i class="el-icon-edit "></i>编辑</el-button>
       </el-col>
     </el-row>

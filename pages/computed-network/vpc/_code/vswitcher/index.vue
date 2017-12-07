@@ -2,20 +2,16 @@
   <section>
     <el-row style="margin-top:-20px;">
       <el-col :span="16">
-        <neMainTitle :title="'交换机'"/>
+        <neMainTitle :title="'交换机列表'"/>
       </el-col>
-      <el-col class="top-buttons-list" :span="8">
+      <el-col class="top-buttons" :span="8">
         <el-button size="small"><i class="el-icon-refresh "></i>刷新</el-button>
         <el-button type="primary"  size="small"><i class="el-icon-plus "></i>创建</el-button>
       </el-col>
     </el-row>
     <el-row  style="margin-top:5px;">
       <el-col>
-        <el-card class="ne-card" style="margin-bottom:20px;">
-          <div slot="header"  class="clearfix">
-            <span>交换机列表</span>
-          </div>
-          <el-table :data="tableData?tableData.content:[]" border class="console-table-list">
+        <el-table :data="tableData?tableData.content:[]" border class="console-table-list">
             <el-table-column  label="名称/code" >
               <template slot-scope="scope">
                 <el-tooltip effect="dark" :content="scope.row.vswitchName" placement="bottom-start">
@@ -33,7 +29,6 @@
               </template>
             </el-table-column>
           </el-table>
-        </el-card>
       </el-col>
     </el-row>
     <el-row style="margin-top:10px;" class="pager" v-if="tableData">

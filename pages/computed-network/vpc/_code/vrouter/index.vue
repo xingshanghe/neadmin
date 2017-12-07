@@ -4,7 +4,7 @@
       <el-col :span="16">
         <neMainTitle :title="'路由器'"/>
       </el-col>
-      <el-col class="top-buttons-list" :span="8">
+      <el-col class="top-buttons" :span="8">
         <el-button v-if="!vRouteData" type="primary"  size="small"><i class="el-icon-plus "></i>创建路由器</el-button>
         <el-button v-if="vRouteData" type="primary"  size="small"><i class="el-icon-edit "></i>编辑</el-button>
         <el-button v-if="vRouteData" type="primary"  size="small"><i class="el-icon-plus "></i>增加路由器条目</el-button>
@@ -26,13 +26,16 @@
         </el-card>
       </el-col>
     </el-row>
+
+    <el-row v-if="vRouteData">
+      <el-col>
+        <neMainTitle :title="'路由器条目'"/>
+      </el-col>
+    </el-row>
+
     <el-row v-if="vRouteData" style="margin-top:5px;">
       <el-col>
-        <el-card class="ne-card" style="margin-bottom:20px;">
-          <div slot="header"  class="clearfix">
-            <span>路由条目信息</span>
-          </div>
-          <el-table :data="routeEntryList" border class="console-table-list" >
+        <el-table :data="routeEntryList" border class="console-table-list" >
             <el-table-column  label="路由表code" >
               <template slot-scope="scope">
                 <el-tooltip effect="dark" :content="scope.row.routeTableId" placement="bottom-start">
@@ -54,7 +57,6 @@
               </template>
             </el-table-column>
           </el-table>
-        </el-card>
       </el-col>
     </el-row>
   </section>
