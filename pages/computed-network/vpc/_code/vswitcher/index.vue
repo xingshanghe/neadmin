@@ -31,7 +31,7 @@
           </el-table>
       </el-col>
     </el-row>
-    <el-row style="margin-top:10px;" class="pager" v-if="tableData">
+    <el-row style="margin-top:10px;" class="pager" v-if="tableData&&tableData.totalElements">
       <el-col>
         <el-pagination layout="total, prev, pager, next" :total="tableData.totalElements" :current-page.sync="query.page" :page-size="tableData.size" @current-change="getVswitcherList"></el-pagination>
       </el-col>
