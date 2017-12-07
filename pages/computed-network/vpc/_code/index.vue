@@ -8,7 +8,7 @@
         <el-button type="primary"  size="small"><i class="el-icon-edit "></i>编辑</el-button>
       </el-col>
     </el-row>
-    <el-row style="margin-top:5px;">
+    <el-row style="margin-top:5px;" v-if="vpcData">
       <el-col>
         <el-card class="ne-card" style="margin-bottom:20px;">
           <div slot="header"  class="clearfix">
@@ -16,7 +16,7 @@
           </div>
           <el-row :gutter="5">
             <el-col :span="8" class="info-item"><span>名称: </span>{{vpcData.vpcName}}</el-col>
-            <el-col :span="8" class="info-item"><span>code: </span>{{code,20|subString}}</el-col>
+            <el-tooltip  effect="dark" :content="code" placement="right"><el-col :span="8" class="info-item"><span>code: </span>{{code,20|subString}}</el-col></el-tooltip>
             <el-col :span="8" class="info-item"><span>状态: </span><span :class="'status-'+vpcData.status">{{vpcData.status|toStatusText}}</span></el-col>
             <el-col :span="8" class="info-item"><span>地域: </span>{{vpcData.regionId}}</el-col>
             <el-col :span="8" class="info-item"><span>网段: </span>{{vpcData.cidrBlock}}</el-col>
@@ -44,7 +44,7 @@ export default {
   data() {
     return {
       code: this.$route.params.code,
-      vpcData: {}
+      vpcData: null
     };
   },
   methods: {

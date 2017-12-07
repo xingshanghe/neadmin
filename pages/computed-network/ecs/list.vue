@@ -15,7 +15,9 @@
           <el-table :data="tableData?tableData.content:[]"  border class="console-table-list" >
             <el-table-column label="名称">
               <template slot-scope="scope">
-                <nuxt-link class="el-button el-button--text" :to="'/computed-network/ecs/' + scope.row.instanceId"  :title="scope.description">{{scope.row.instanceName}}</nuxt-link>
+                <el-tooltip effect="dark" :content="scope.row.instanceId" placement="bottom-start">
+                  <nuxt-link class="el-button el-button--text" :to="'/computed-network/ecs/' + scope.row.instanceId"  >{{scope.row.instanceName,10|subString}}</nuxt-link>
+                </el-tooltip>
               </template>
             </el-table-column>
             <el-table-column prop="privateIpaddress" label="IP地址" ></el-table-column>

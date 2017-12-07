@@ -16,14 +16,20 @@
             <span>交换机列表</span>
           </div>
           <el-table :data="tableData?tableData.content:[]" border class="console-table-list">
-            <el-table-column prop="vswitchName" label="名称/code"></el-table-column>
+            <el-table-column  label="名称/code" >
+              <template slot-scope="scope">
+                <el-tooltip effect="dark" :content="scope.row.vswitchName" placement="bottom-start">
+                  <nuxt-link class="el-button el-button--text" :to="'/computed-network/vswitcher/' + scope.row.vswitchName"  :title="scope.vswitchName">{{scope.row.vswitchName,10|subString}}</nuxt-link>
+                </el-tooltip>
+              </template>
+            </el-table-column>
             <el-table-column prop="cidrBlock" label="网段"></el-table-column>
             <el-table-column prop="status" label="状态"></el-table-column>
             <el-table-column prop="zoneUUID" label="可用区"></el-table-column>
             <el-table-column prop="createTime" label="创建时间"></el-table-column>
             <el-table-column label="操作">
               <template slot-scope="scope">
-                <el-button type="text" @click="del(scope.$index)">删除</el-button>
+                <el-button type="text" @click="del(scope.$index)"><i class="icon-cross2" title="删除"></i></el-button>
               </template>
             </el-table-column>
           </el-table>

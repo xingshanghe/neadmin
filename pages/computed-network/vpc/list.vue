@@ -15,7 +15,9 @@
           <el-table :data="tableData?tableData.content:[]"  border  class="console-table-list">
             <el-table-column label="名称">
               <template slot-scope="scope">
-                <nuxt-link class="el-button el-button--text" :to="'/computed-network/vpc/' + scope.row.vpcId"  :title="scope.description">{{scope.row.vpcName}}</nuxt-link>
+                <el-tooltip effect="dark" :content="scope.row.vpcName" placement="bottom-start">
+                  <nuxt-link class="el-button el-button--text" :to="'/computed-network/vpc/' + scope.row.vpcId"  >{{scope.row.vpcName,10|subString}}</nuxt-link>
+                </el-tooltip>
               </template>
             </el-table-column>
             <el-table-column prop="regionId" label="区位"></el-table-column>

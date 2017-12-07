@@ -18,7 +18,7 @@
           </div>
           <el-row :gutter="5">
             <el-col :span="8" class="info-item"><span>名称: </span>{{vRouteData.vrouterName}}</el-col>
-            <el-col :span="8" class="info-item"><span>code: </span>{{(vRouteData.vrouterId),20|subString}}</el-col>
+            <el-tooltip  effect="dark" :content="vRouteData.vrouterId" placement="right"><el-col :span="8" class="info-item"><span>code: </span>{{(vRouteData.vrouterId),20|subString}}</el-col></el-tooltip>
             <el-col :span="8" class="info-item"><span>状态: </span><span :class="'status-'+vRouteData.status">{{vRouteData.status|toStatusText}}</span></el-col>
             <el-col :span="8" class="info-item"><span>创建时间: </span>{{vRouteData.createTime}}</el-col>
             <el-col :span="8" class="info-item"><span>备注: </span>{{vRouteData.description}}</el-col>
@@ -33,7 +33,13 @@
             <span>路由条目信息</span>
           </div>
           <el-table :data="routeEntryList" border class="console-table-list" >
-            <el-table-column prop="routeTableId" label="路由表code" ></el-table-column>
+            <el-table-column  label="路由表code" >
+              <template slot-scope="scope">
+                <el-tooltip effect="dark" :content="scope.row.routeTableId" placement="bottom-start">
+                  <nuxt-link class="el-button el-button--text" :to="'/computed-network/vrouter/' + scope.row.routeTableId"  :title="scope.description">{{scope.row.routeTableId,10|subString}}</nuxt-link>
+                </el-tooltip>
+              </template>
+            </el-table-column>
             <el-table-column label="状态" width="180">
               <template slot-scope="scope"> 
                 <span  :class="'status-' + scope.row.status"> {{scope.row.status|toStatusText}} </span>
