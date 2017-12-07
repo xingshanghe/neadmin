@@ -15,7 +15,7 @@
           <el-table-column label="名称/code">
             <template slot-scope="scope">
               <el-tooltip effect="dark" :content="scope.row.diskName" placement="right">
-                <nuxt-link class="el-button el-button--text" :to="'/computed-network/disk/' + scope.row.diskId"  >{{scope.row.diskName}}/{{scope.row.diskId,10|subString}}</nuxt-link>
+                <nuxt-link class="el-button el-button--text" :to="'/computed-network/disk/' + scope.row.diskId"  >{{scope.row.diskName,10|subString}}/{{scope.row.diskId,10|subString}}</nuxt-link>
               </el-tooltip>
             </template>
           </el-table-column>
