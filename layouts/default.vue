@@ -63,7 +63,6 @@
       <el-main class="main-container"><nuxt ></nuxt></el-main>
     </el-container>
   </el-container>
-</nav>
 
 
 </template>
