@@ -46,7 +46,6 @@
 <script>
 import _ from 'lodash';
 import neMainTitle from '~/components/ne-main-title.vue';
-import consts from '~/utils/consts.js';
 export default {
   name: 'get-disk-from-ecs-code',
   head: {
@@ -109,14 +108,14 @@ export default {
       return this.$api({metadata: {name: 'console.snapshot.ecs.getlist'}, spec: {
         'SnapshotList.Get': {
           'UrlParams': {
-            'access_token': consts.TOKEN,
+            'access_token': this.$store.state.access_token,
             'search_EQ_instanceId': this.code,
             'page': this.query.page ? this.query.page - 1 : 1 - 1
           }
         },
         'Ecs.Get': {
           'UrlParams': {
-            'access_token': consts.TOKEN
+            'access_token': this.$store.state.access_token
           },
           'BasicInfos': {
             'ResourceId': this.code

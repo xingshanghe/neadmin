@@ -41,7 +41,6 @@
 <script>
 import _ from 'lodash';
 import neMainTitle from '~/components/ne-main-title.vue';
-import consts from '~/utils/consts.js';
 export default {
   name: 'get-vswitcher-from-vpc-code',
   head: {
@@ -93,7 +92,7 @@ export default {
       return this.$api({metadata: {name: 'console.vswitcher.getlist'}, spec: {
         'VswList.Get': {
           'UrlParams': {
-            'access_token': consts.TOKEN,
+            'access_token': this.$store.state.access_token,
             'search_EQ_vpcId': this.$route.params.code
           }
         }

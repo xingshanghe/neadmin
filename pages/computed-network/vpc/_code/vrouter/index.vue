@@ -64,7 +64,6 @@
 <script>
 import _ from 'lodash';
 import neMainTitle from '~/components/ne-main-title.vue';
-import consts from '~/utils/consts.js';
 export default {
   name: 'get-vrouter-from-vpc-code',
   head: {
@@ -118,7 +117,7 @@ export default {
       return this.$api({metadata: {name: 'console.vrouter.whole.get'}, spec: {
         'Vpc.Get': {
           'UrlParams': {
-            'access_token': consts.TOKEN
+            'access_token': this.$store.state.access_token
           },
           'BasicInfos': {
             'ResourceId': this.code
@@ -126,19 +125,19 @@ export default {
         },
         'VRouteList.Get': {
           'UrlParams': {
-            'access_token': consts.TOKEN,
+            'access_token': this.$store.state.access_token,
             'search_EQ_vpcId': this.code
           }
         },
         'RouteEntryList.Get': {
           'UrlParams': {
-            'access_token': consts.TOKEN,
+            'access_token': this.$store.state.access_token,
             'search_EQ_vpcId': this.code
           }
         },
         'RouteTableList.Get': {
           'UrlParams': {
-            'access_token': consts.TOKEN,
+            'access_token': this.$store.state.access_token,
             'search_EQ_vpcId': this.code
           }
         }

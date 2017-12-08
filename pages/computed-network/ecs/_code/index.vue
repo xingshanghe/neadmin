@@ -91,7 +91,6 @@
 <script>
 import _ from 'lodash';
 import neMainTitle from '~/components/ne-main-title.vue';
-import consts from '~/utils/consts.js';
 
 export default {
   head: {
@@ -152,7 +151,7 @@ export default {
       return this.$api({metadata: {name: 'console.ecs.get'}, spec: {
         'Ecs.Get': {
           'UrlParams': {
-            'access_token': consts.TOKEN
+            'access_token': this.$store.state.access_token
           },
           'BasicInfos': {
             'ResourceId': this.code

@@ -49,7 +49,6 @@
 </template>
 <script>
 import listTitlePills from '~/components/console/list-title-pills.vue';
-import consts from '~/utils/consts.js';
 // import api from '~/api';
 
 export default {
@@ -71,7 +70,7 @@ export default {
       return this.$api({metadata: {name: 'console.ecs.getlist'}, spec: {
         'EcsList.Get': {
           'UrlParams': {
-            'access_token': consts.TOKEN,
+            'access_token': this.$store.state.access_token,
             'page': this.query.page ? this.query.page - 1 : 1 - 1
           }
         }
@@ -84,7 +83,7 @@ export default {
     // return api({metadata: {name: 'console.ecs.getlist'}, spec: {
     //   'EcsList.Get': {
     //     'UrlParams': {
-    //       'access_token': consts.TOKEN
+    //       'access_token': this.$store.state.access_token
     //     }
     //   }
     // }}).then(res=>{

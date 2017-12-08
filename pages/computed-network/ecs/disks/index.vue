@@ -48,7 +48,6 @@
 <script>
 import listTitlePills from '~/components/console/list-title-pills.vue';
 import neMainTitle from '~/components/ne-main-title.vue';
-import consts from '~/utils/consts.js';
 export default {
   name: 'get-disk-from-ecs-code',
   head: {
@@ -72,7 +71,7 @@ export default {
       return this.$api({metadata: {name: 'console.disk.ecs.getlist'}, spec: {
         'DiskList.Get': {
           'UrlParams': {
-            'access_token': consts.TOKEN,
+            'access_token': this.$store.state.access_token,
             'page': this.query.page ? this.query.page - 1 : 1 - 1
           }
         }
