@@ -100,6 +100,12 @@ export default {
     neMainTitle
   },
   middleware: 'authenticated',
+  validate({ params }) {
+    // Must be a number
+    console.error(params.code);
+    return true;
+    // return /^\d+$/.test(params.id);
+  },
   data() {
     return {
       code: this.$route.params.code,
