@@ -6,10 +6,10 @@
       </el-col>
       <el-col class="top-buttons-list" :span="8">
         <el-button size="small"><i class="el-icon-refresh "></i>刷新</el-button>
-        <el-button type="primary"  size="small"><i class="el-icon-plus "></i>新增</el-button>
+        <el-button type="primary" @click="$router.push('/computed-network/ecs/disks/add')" size="small"><i class="el-icon-plus "></i>新增</el-button>
       </el-col>
     </el-row>
-    <el-row  style="margin-top:5px;">
+    <el-row  style="margin-top:10px;">
       <el-col>
         <el-table :data="tableData?tableData.content:[]"  border class="console-table-list">
           <el-table-column label="名称/code">
