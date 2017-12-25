@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     getNatList() {
-      return this.$api({metadata: {name: 'console.vpc.getlist'}, spec: {
+      return this.$api({metadata: {name: 'console.nat.getlist'}, spec: {
         'NATGW.List': {
           'UrlParams': {
             'access_token': this.$store.state.access_token,

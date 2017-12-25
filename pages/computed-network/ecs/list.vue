@@ -22,7 +22,7 @@
             </el-table-column>
             <el-table-column prop="privateIpaddress" label="IP地址" ></el-table-column>
             <el-table-column label="状态" >
-              <template slot-scope="scope"> 
+              <template slot-scope="scope">
                 <span :class="'status-' + scope.row.status">{{scope.row.status|toStatusText}}</span>
               </template>
             </el-table-column>
