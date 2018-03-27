@@ -1,6 +1,6 @@
-# dopadmin
+# neadmin
 
-> Nuxt.js project
+> Nuxt.js + element-ui  project
 
 ## Build Setup
 
