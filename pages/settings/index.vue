@@ -4,7 +4,7 @@
 <script>
 export default {
   head: {
-    title: '系统设置'
+    title: '设置'
   },
   middleware: 'authenticated'
 };

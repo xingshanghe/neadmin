@@ -1,12 +1,14 @@
-import {getUserFromCookie, getUserFromSessionStorage, getFromCookie, getFromSessionStorage} from '~/utils/auth.js';
+import { getFromCookie, getFromLocalStorage } from '~/utils/index.js';
+import { getJwtFromCookie, getJwtFromSessionStorage, getJwtFromLocalStorage } from '~/utils/auth.js';
+import consts from '~/utils/consts.js';
 
-export default function({ isServer, store, req }) {
-  if (isServer && !req) {
+export default function({ store, req }) {
+  if (process.server && !req) {
     return ;
   }
-  const user = isServer ? getUserFromCookie(req) : getUserFromSessionStorage();
-  store.commit('SET_USER', user);
-
-  const access_token = isServer ? getFromCookie(req, 'access_token') : getFromSessionStorage('access_token');
-  store.commit('SET_ACCESS_TOKEN', access_token);
+  const keepLogin = process.server ? getFromCookie(req, consts.KEEP_LOGIN_KEY) : getFromLocalStorage(consts.KEEP_LOGIN_KEY);
+  const jwtData = process.server ? getJwtFromCookie(req) : keepLogin ? getJwtFromLocalStorage() : getJwtFromSessionStorage();
+  if (jwtData) {
+    store.commit('SET_JWT_DATA', jwtData);
+  }
 };

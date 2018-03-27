@@ -1,49 +1,52 @@
 import axios from 'axios';
 import consts from '~/utils/consts.js';
-import {setToken, setUser, jwtHeader, setAll} from '~/utils/auth.js';
-import {setMenusCollapse} from '~/utils/menus.js';
+import { setAll} from '~/utils/index.js';
+import { setAllByJwt, removeSoOn, setMenus, unsetMenus } from '~/utils/auth.js';
+import { setMenusCollapse } from '~/utils/menus.js';
 
-export const state = () => {
+export const state = () =>{
   return {
     user: null,
-    access_token: null,
+    roles: null,
+    exp: 0,
     sidebarCollapse: false,
     secSidebarCollapse: false,
-    mapOfRoutes: null
+    menuMapOfRoutes: null,
+    menus: null
   };
 };
 
 export const mutations = {
-  SET_USER: function(state, user) {
-    state.user = user || null;
+  SET_JWT_DATA: function(state, jwtData) {
+    let now = Math.round(new Date() / 1000);
+    if (jwtData.exp < now) {
+      state.user = null;
+    } else {
+      state.user = jwtData.account;
+      state.roles = jwtData.roles;
+      state.exp = jwtData.exp;
+    }
   },
-  SET_ACCESS_TOKEN: function(state, access_token) {
-    state.access_token = access_token || null;
+  DEL_JWT_DATA: function(state) {
+    state.user = null;
+    state.roles = null;
+    state.exp = 0;
+  },
+  SET_MENUS: function(state, menus) {
+    state.menus = menus;
   },
   SET_MENUS_COLLAPSE: function(state, {sidebarCollapse, secSidebarCollapse}) {
-    state.sidebarCollapse = sidebarCollapse;
-    state.secSidebarCollapse = secSidebarCollapse;
+    state.sidebarCollapse = sidebarCollapse === 'true';
+    state.secSidebarCollapse = secSidebarCollapse === 'true';
   },
-  SET_MAP_OF_ROUTES: function(state, mapOfRoutes) {
-    state.mapOfRoutes = mapOfRoutes;
+  SET_MENU_MAP_OF_ROUTES: function(state, menuMapOfRoutes) {
+    state.menuMapOfRoutes = menuMapOfRoutes;
   }
 };
 
 export const getters = {
   isAuthenticated: function(state) {
     return !!state.user;
-  },
-  sidebarCollapse: function(state) {
-    return state.sidebarCollapse;
-  },
-  secSidebarCollapse: function(state) {
-    return state.secSidebarCollapse;
-  },
-  user: function(state) {
-    return state.user;
-  },
-  mapOfRoutes: function(state) {
-    return state.mapOfRoutes;
   }
 };
 
@@ -53,37 +56,27 @@ export const actions = {
     commit('SET_MENUS_COLLAPSE', {sidebarCollapse, secSidebarCollapse});
     setMenusCollapse({sidebarCollapse, secSidebarCollapse});
   },
-  mapOfRoutes({commit}, mapOfRoutes) {
-    commit('SET_MAP_OF_ROUTES', mapOfRoutes);
-  },
-  async login({commit}, {username, password, captcha}) {
+  async login({}, {username, password, captcha, keepLogin}) {
+    if (keepLogin) {
+      setAll(consts.KEEP_LOGIN_KEY, keepLogin);
+    }
     try {
-      const {data: {code: code, data: {token: token, account: account}, msg: msg}} = await axios.post(consts.API_URL + '/accounts/login', {username, password, captcha});
+      const {data: {code: code, data: {token: token, menus: menus}, msg: msg}} = await axios.post(consts.API_URL + '/accounts/login', {username, password, captcha});
       if (code === 0) {
-        setToken(token);
-        setUser(JSON.stringify(account));
-        jwtHeader(token);
-        commit('SET_USER', account);
+        setAllByJwt(token);
+        // commit('SET_JWT_DATA', setAllByJwt(token));
+        setMenus(JSON.stringify(menus));
       } else {
         throw new Error(msg);
       }
     } catch (error) {
       let message = error.message;
-      // if (error.response.data) {
-      //   message = error.response.data.message || message;
-      // }
       throw new Error(message);
     }
   },
-  async loginOauth({commit}, {access_token}) {
-    commit('SET_USER', {
-      username: 'zxc'
-    });
-    setUser(JSON.stringify({
-      username: 'zxc'
-    }));
-    setAll('access_token', access_token);
-    commit('SET_ACCESS_TOKEN', access_token);
+  async logout({commit}) {
+    removeSoOn();
+    unsetMenus();
+    commit('DEL_JWT_DATA');
   }
 };
-

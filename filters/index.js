@@ -101,17 +101,6 @@ export function toThousandslsFilter(num) {
   return (+num || 0).toString().replace(/^-?\d+/g, m => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','));
 }
 
-export function toStatusText(status) {
-  const statusTextArr = {
-    'Available': '正常',
-    'Error': '错误',
-    'Running': '运行中',
-    'Pending': '创建中',
-    'Custom': '自定义'
-  };
-  return statusTextArr[status] !== undefined ? statusTextArr[status] : status;
-}
-// 截取固定长度字符串
 export function subString(str, len) {
   if (!str) {
     return;
@@ -125,9 +114,29 @@ export function subString(str, len) {
       strlen++;
     }
     s += str.charAt(i);
-    if (strlen >= len) {
+    if (strlen > len) {
       return s + '...';
     }
   }
   return s;
+}
+
+export function translateGender(gender) {
+  var genders = {
+    'male': '男', 'female': '女'
+  };
+  return genders[gender] !== undefined ? genders[gender] : gender;
+}
+
+export function translateStatus(status) {
+  var genders = {
+    '0': '正常', '1': '锁定'
+  };
+  return genders[status] !== undefined ? genders[status] : status;
+}
+export function translateYesOrNo(value) {
+  var text = {
+    '0': '否', '1': '是'
+  };
+  return text[value] !== undefined ? text[value] : value;
 }

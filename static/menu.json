@@ -176,31 +176,78 @@
   },
   {
     "icon":"icon-users4",
-    "title":"用户管理",
-    "link":"/accounts",
+    "title":"权限管理",
+    "link":"/users/accounts",
     "sub":[
       {
-        "icon":"xxx",
         "isgroup":true,
-        "title":"用户管理",
+        "title":"权限管理",
         "children":[
           {
             "icon":"icon-vcard",
             "title":"账号管理",
-            "link":"/accounts"
+            "link":"/users/accounts"
           },
           {
-            "icon":"icon-safe",
-            "title":"访问列表管理",
-            "link":"/accounts/acl"
+            "icon":"icon-eye-plus",
+            "title":"角色管理",
+            "link":"/users/roles"
           }
         ]
       }
     ]
   },
   {
-    "icon":"el-icon-setting",
-    "title":"系统设置",
-    "link":"/settings"
+    "icon":"icon-cog3",
+    "title":"设置",
+    "link":"/settings",
+    "children":[
+      {
+        "icon":"icon-wrench2",
+        "title":"系统设置",
+        "link":"/settings/system/menus",
+        "sub":[
+          {
+            "isgroup":true,
+            "title":"系统设置",
+            "children":[
+              {
+                "icon":"icon-safe",
+                "title":"菜单管理",
+                "link":"/settings/system/menus"
+              },
+              {
+                "icon":"icon-flip-vertical4",
+                "title":"接口管理",
+                "link":"/settings/system/apis"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "icon":"icon-user",
+        "title":"个人设置",
+        "link":"/settings/personal/profile",
+        "sub":[
+          {
+            "isgroup":true,
+            "title":"个人设置",
+            "children":[
+              {
+                "icon":"icon-vcard",
+                "title":"个人资料设置",
+                "link":"/settings/personal/profile"
+              },
+              {
+                "icon":"icon-key",
+                "title":"修改密码",
+                "link":"/settings/personal/password"
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 ]
